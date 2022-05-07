@@ -36,7 +36,7 @@ class _LoginScreen extends State<LoginScreen> {
                     const SizedBox(
                       height: 32.0,
                     ),
-                    Text(
+                    const Text(
                       "Acesse sua conta",
                       style: TextStyle(
                           fontFamily: 'Sansation',
@@ -45,8 +45,8 @@ class _LoginScreen extends State<LoginScreen> {
                         color: Color(0xFF39403E)
                       ),
                     ),
-                    SizedBox(
-                      height: 26.0,
+                    const SizedBox(
+                      height: 32.0,
                     ),
                     TextFormField(
                       cursorColor: const Color(0xFF39403E),
@@ -54,6 +54,8 @@ class _LoginScreen extends State<LoginScreen> {
                       decoration: const InputDecoration(
                         labelStyle: TextStyle(
                           fontSize: 18,
+                          fontFamily: 'Sansation',
+                          fontWeight: FontWeight.w300,
                           color: Color(0xFF39403E),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -66,13 +68,146 @@ class _LoginScreen extends State<LoginScreen> {
                             )),
                         border: OutlineInputBorder(),
                         labelText: "Email",
-                        prefixIcon: Icon(Icons.email, color: Color(0xFF9966DD)),
+                        prefixIcon: Icon
+                          (Icons.email, color: Color(0xFF9966DD)),
                       ),
                       keyboardType: TextInputType.emailAddress,
                       // validator: (_emailController) {
                       //   if (_emailController.isEmpty || !_emailController.contains("@"))
                       //     return "Email inválido";
                       // },
+                    ),
+                    const SizedBox(
+                      height: 26.0,
+                    ),
+                    TextFormField(
+                      cursorColor: const Color(0xFF39403E),
+                      controller: _senhaController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Sansation',
+                          fontWeight: FontWeight.w300,
+                          color: Color(0xFF39403E),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFF9966DD),
+                            )),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFF9966DD),
+                            )),
+                        border: OutlineInputBorder(),
+                        labelText: "Senha",
+                        prefixIcon: Icon
+                          (Icons.vpn_key, color: Color(0xFF9966DD)),
+                      ),
+                      keyboardType: TextInputType.visiblePassword,
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: FlatButton(
+                        child: const Text("Esqueci minha senha",
+                            style: TextStyle(
+                                fontSize: 18.0,
+                              fontFamily: 'Sansation',
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF39403E),
+                              decoration: TextDecoration.underline,
+                            )
+                        ),
+                        onPressed: () {
+                          Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 36.0,
+                    ),
+                    SizedBox(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            side: const BorderSide(color: Color(0xFF9966DD))),
+                        child: const Text(
+                          "Entrar",
+                          style: TextStyle(fontSize: 18.0,
+                            fontFamily: 'Sansation',
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        textColor: Colors.blueGrey[50],
+                        color: Color(0xFF9966DD),
+                        onPressed: () {
+                          // if (_formKey.currentState.validate()) {
+                          //   _auth();
+                          // }
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 14.0,
+                    ),
+                    SizedBox(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width,
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            side: const BorderSide(color: Color(0xFF9966DD))),
+                        child: const Text(
+                          "Entrar com o facebook",
+                          style: TextStyle(fontSize: 18.0,
+                            fontFamily: 'Sansation',
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        textColor: Colors.blueGrey[50],
+                        color: Colors.blue[800],
+                        onPressed: () {
+                          // if (_formKey.currentState.validate()) {
+                          //   _auth();
+                          // }
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 32.0,
+                    ),
+                    const Text(
+                      "Não tem conta?",
+                      style: TextStyle(
+                          fontFamily: 'Sansation',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF39403E)
+                      ),
+                    ),
+                    FlatButton(
+                      child: const Text("Criar conta",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Sansation',
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF9966DD),
+                            decoration: TextDecoration.underline,
+                          )
+                      ),
+                      onPressed: () {
+                        Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
