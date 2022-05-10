@@ -155,6 +155,7 @@ class _LoginScreen extends State<LoginScreen> {
                         )
                           ]
                         ),
+                        textColor: Colors.white,
                         color: Colors.blue[800],
                         onPressed: () {
                           // if (_formKey.currentState.validate()) {
@@ -180,6 +181,7 @@ class _LoginScreen extends State<LoginScreen> {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
+                        textColor: Colors.white,
                         color: Color(0xFF9966DD),
                         onPressed: () {
                           // if (_formKey.currentState.validate()) {
