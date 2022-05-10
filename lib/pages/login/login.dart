@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -136,16 +135,27 @@ class _LoginScreen extends State<LoginScreen> {
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
-                            side: const BorderSide(color: Color(0xFF9966DD))),
-                        child: const Text(
-                          "Entrar",
-                          style: TextStyle(fontSize: 18.0,
-                            fontFamily: 'Sansation',
-                            fontWeight: FontWeight.w700,
-                          ),
+                            side: const BorderSide(color: Color(0xFF1565C0))),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                        Image.asset(
+                        'images/facebook.png',
+                          height: 30.0,
+                          width: 30.0,
                         ),
-                        textColor: Colors.blueGrey[50],
-                        color: Color(0xFF9966DD),
+                        const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              "Entrar com o Facebook",
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.bold,
+                              ),
+                            )
+                        )
+                          ]
+                        ),
+                        color: Colors.blue[800],
                         onPressed: () {
                           // if (_formKey.currentState.validate()) {
                           //   _auth();
@@ -164,14 +174,13 @@ class _LoginScreen extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(8.0),
                             side: const BorderSide(color: Color(0xFF9966DD))),
                         child: const Text(
-                          "Entrar com o facebook",
+                          "Entrar",
                           style: TextStyle(fontSize: 18.0,
                             fontFamily: 'Sansation',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        textColor: Colors.blueGrey[50],
-                        color: Colors.blue[800],
+                        color: Color(0xFF9966DD),
                         onPressed: () {
                           // if (_formKey.currentState.validate()) {
                           //   _auth();
