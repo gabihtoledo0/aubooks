@@ -63,10 +63,6 @@ class _LoginScreen extends State<LoginScreen> {
                             borderSide: BorderSide(
                               color: Color(0xFF9966DD),
                             )),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF9966DD),
-                            )),
                         border: OutlineInputBorder(),
                         labelText: "Email",
                         prefixIcon: Icon
@@ -93,10 +89,6 @@ class _LoginScreen extends State<LoginScreen> {
                           color: Color(0xFF39403E),
                         ),
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF9966DD),
-                            )),
-                        enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF9966DD),
                             )),

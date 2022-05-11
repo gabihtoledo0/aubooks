@@ -28,7 +28,6 @@ class _RegisterUser extends State<RegisterUser> {
             align: Alignment.centerRight,),
         ),
         elevation: 0,
-        leading: Icon(Icons.chevron_left),
         iconTheme: IconThemeData(color: Color(0xFF39403E)),
         backgroundColor: Colors.green[50],
       ),
@@ -42,13 +41,24 @@ class _RegisterUser extends State<RegisterUser> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 50),
+                  SizedBox(height: 30),
                   TextFormField(
                     controller: _nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Sansation',
+                          fontWeight: FontWeight.w300,
+                          color: Color(0xFF39403E),
+                        ),
                       labelText: "Nome",
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF9966DD),
+                          )),
+                      prefixIcon: Icon(Icons.person,
+                          color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.name,
                     // validator: valida.validarNome,
