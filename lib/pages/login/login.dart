@@ -33,7 +33,7 @@ class _LoginScreen extends State<LoginScreen> {
                     SizedBox(
                       height: 8.0,
                     ),
-                    LogoImageAsset(height: 40),
+                    LogoImageAsset(height: 40, align: Alignment.center),
                     const SizedBox(
                       height: 32.0,
                     ),

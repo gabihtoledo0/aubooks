@@ -10,11 +10,29 @@ class RegisterUser extends StatefulWidget {
 
 class _RegisterUser extends State<RegisterUser> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _surnameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _confSenhaController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _cpfController = TextEditingController();
 
   @override
 
   Widget build(BuildContext context){
-    return Scaffold(backgroundColor: Colors.green[50],
+    return Scaffold(
+      appBar: AppBar(
+        title: Container(
+          child: LogoImageAsset(height: 23,
+            align: Alignment.centerRight,),
+        ),
+        elevation: 0,
+        leading: Icon(Icons.chevron_left),
+        iconTheme: IconThemeData(color: Color(0xFF39403E)),
+        backgroundColor: Colors.green[50],
+      ),
+      backgroundColor: Colors.green[50],
       body: Form(
         key: _formKey,
         child: ListView(
@@ -23,10 +41,20 @@ class _RegisterUser extends State<RegisterUser> {
             padding: EdgeInsets.all(28.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: LogoImageAsset(height: 20),
+                children: [
+                  SizedBox(height: 50),
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      labelText: "Nome",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.person),
+                    ),
+                    keyboardType: TextInputType.name,
+                    // validator: valida.validarNome,
+                  ),
+                  SizedBox(
+                    height: 16.0,
                   ),
                 ],
               ),
