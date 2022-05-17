@@ -16,7 +16,8 @@ class _RegisterUser extends State<RegisterUser> {
   final TextEditingController _senhaController = TextEditingController();
   final TextEditingController _confSenhaController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _cpfController = TextEditingController();
+  final TextEditingController _dateOfBirthController = TextEditingController();
+  FocusNode focus = FocusNode();
 
   @override
 
@@ -37,11 +38,11 @@ class _RegisterUser extends State<RegisterUser> {
         child: ListView(
           children: <Widget>[
             Container(
-            padding: EdgeInsets.all(28.0),
+            padding: const EdgeInsets.all(28.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 30),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: _nameController,
                     decoration: const InputDecoration(
@@ -63,8 +64,179 @@ class _RegisterUser extends State<RegisterUser> {
                     keyboardType: TextInputType.name,
                     // validator: valida.validarNome,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
+                  ),
+                  TextFormField(
+                    controller: _surnameController,
+                    decoration: const InputDecoration(
+                      labelStyle: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Sansation',
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFF39403E),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF9966DD),
+                          )),
+                      labelText: "Sobrenome",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.supervisor_account,
+                          color: Color(0xFF9966DD)),
+                    ),
+                    keyboardType: TextInputType.name,
+                    // validator: valida.validarNome,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextFormField(
+                    controller: _phoneController,
+                    // inputFormatters: [maskFormatter],
+                    decoration: const InputDecoration(
+                      labelStyle: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Sansation',
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFF39403E),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF9966DD),
+                          )),
+                      labelText: "Celular",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.local_phone, color: Color(0xFF9966DD)),
+                    ),
+                    keyboardType: TextInputType.phone,
+                    // validator: valida.validarCelular,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextFormField(
+                    controller: _dateOfBirthController,
+                    decoration: const InputDecoration(
+                      labelStyle: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Sansation',
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFF39403E),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF9966DD),
+                          )),
+                      labelText: "Data de Nascimento",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.date_range,
+                          color: Color(0xFF9966DD)),
+                    ),
+                    keyboardType: TextInputType.datetime,
+                    // validator: valida.validarNome,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      labelStyle: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Sansation',
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFF39403E),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF9966DD),
+                          )),
+                      labelText: "Email",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.email,
+                          color: Color(0xFF9966DD)),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    // validator: valida.validarEmail,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextFormField(
+                    controller: _senhaController,
+                    decoration: const InputDecoration(
+                      labelStyle: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Sansation',
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFF39403E),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF9966DD),
+                          )),
+                      labelText: "Senha",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.vpn_key,
+                          color: Color(0xFF9966DD)),
+                    ),
+                    obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    // validator: valida.validarSenha,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextFormField(
+                    controller: _confSenhaController,
+                    decoration: const InputDecoration(
+                      labelStyle: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Sansation',
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFF39403E),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF9966DD),
+                          )),
+                      labelText: "Confirme sua senha",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.vpn_key,  color: Color(0xFF9966DD)),
+                    ),
+                    obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    // validator: (_confSenhaController) {
+                    //   final senha = _senhaController.text;
+                    //   if (_confSenhaController.isEmpty ||
+                    //       _confSenhaController != senha)
+                    //     return "As senhas não conferem";
+                    // },
+                  ),
+                  const  SizedBox(
+                    height: 28.0,
+                  ),
+                  SizedBox(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          side: BorderSide(color: Color(0xFFF8BBD0))),
+                      child: Text(
+                        "Assinar gratuitamente",
+                        style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                      textColor: Colors.white,
+                      color: Color(0xFF9966DD),
+                      onPressed: () {
+                        // if (_formKey.currentState.validate()) {
+                        //   register();
+                        // }
+                      },
+                    ),
                   ),
                 ],
               ),
