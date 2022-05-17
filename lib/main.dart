@@ -1,4 +1,4 @@
-import 'package:aubooks/pages/login/login.dart';
+import 'package:aubooks/pages/tela_inicial/primary_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: PrimaryScreen(),
     );
   }
 }
