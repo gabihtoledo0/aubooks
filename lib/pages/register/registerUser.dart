@@ -224,7 +224,7 @@ class _RegisterUser extends State<RegisterUser> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           side: BorderSide(color: Color(0xFFF8BBD0))),
-                      child: Text(
+                      child: const Text(
                         "Assinar gratuitamente",
                         style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
