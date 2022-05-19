@@ -28,7 +28,7 @@ class _LoginScreen extends State<LoginScreen> {
               padding: EdgeInsets.all(28.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     // ignore: prefer_const_constructors
                     SizedBox(
                       height: 8.0,
