@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:aubooks/pages/components/logo.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -26,12 +27,12 @@ class _LoginScreen extends State<LoginScreen> {
               padding: EdgeInsets.all(28.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     // ignore: prefer_const_constructors
                     SizedBox(
                       height: 8.0,
                     ),
-                    LogoImageAsset(),
+                    LogoImageAsset(height: 40, align: Alignment.center),
                     const SizedBox(
                       height: 32.0,
                     ),
@@ -228,18 +229,6 @@ class _LoginScreen extends State<LoginScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class LogoImageAsset extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    AssetImage assetImage = AssetImage('images/logo-aubooks.png');
-    Image image = Image(image: assetImage, height: 40);
-    return Container(
-      alignment: Alignment.center,
-      child: image,
     );
   }
 }
