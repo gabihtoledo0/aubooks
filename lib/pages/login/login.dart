@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aubooks/pages/components/logo.dart';
+import 'package:aubooks/pages/register/registerUser.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -62,10 +63,6 @@ class _LoginScreen extends State<LoginScreen> {
                             borderSide: BorderSide(
                               color: Color(0xFF9966DD),
                             )),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF9966DD),
-                            )),
                         border: OutlineInputBorder(),
                         labelText: "Email",
                         prefixIcon: Icon
@@ -92,10 +89,6 @@ class _LoginScreen extends State<LoginScreen> {
                           color: Color(0xFF39403E),
                         ),
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF9966DD),
-                            )),
-                        enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF9966DD),
                             )),
@@ -216,15 +209,13 @@ class _LoginScreen extends State<LoginScreen> {
                       onPressed: () {
                         Navigator.push(context,
                           MaterialPageRoute(
-                              builder: (context) => LoginScreen()
+                              builder: (context) => RegisterUser()
                           ),
                         );
                       },
                     ),
                   ],
                 ),
-
-
             ),
           ],
         ),
@@ -234,9 +225,11 @@ class _LoginScreen extends State<LoginScreen> {
 }
 
 class HeaderImageAsset extends StatelessWidget {
+  const HeaderImageAsset({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    AssetImage assetImage = AssetImage('images/header.png');
+    AssetImage assetImage = const AssetImage('images/header.png');
     Image image = Image(image: assetImage, height: 60,
         fit:BoxFit.fitWidth);
     return Container(
