@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aubooks/pages/components/logo.dart';
+import 'package:aubooks/pages/login/login.dart'
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({Key? key}) : super(key: key);
@@ -246,4 +247,59 @@ class _RegisterUser extends State<RegisterUser> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // configura o button
+  Widget okButton = FlatButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  // configura o  AlertDialog
+  AlertDialog alerta = AlertDialog(
+    title: Text("Email já cadastrado"),
+    content: Text(
+        "Tente cadastrar outro email ou vá até a tela de login e entre com esse email."),
+    actions: [
+      okButton,
+    ],
+  );
+  // exibe o dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alerta;
+    },
+  );
+}
+
+showSucessDialog(BuildContext context) {
+  // configura o button
+  Widget loginButton = FlatButton(
+    child: Text("LOGIN"),
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                LoginScreen()),
+      );
+    },
+  );
+  // configura o  AlertDialog
+  AlertDialog alerta = AlertDialog(
+    title: Text("Usuário cadastrado com sucesso"),
+    actions: [
+      loginButton,
+    ],
+  );
+  // exibe o dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alerta;
+    },
+  );
 }

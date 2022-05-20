@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aubooks/pages/components/logo.dart';
 import 'package:aubooks/pages/register/registerUser.dart';
+import 'package:aubooks/pages/home/homepage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -181,6 +182,11 @@ class _LoginScreen extends State<LoginScreen> {
                           // if (_formKey.currentState.validate()) {
                           //   _auth();
                           // }
+                          Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()
+                            ),
+                          );
                         },
                       ),
                     ),
