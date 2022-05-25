@@ -1,5 +1,6 @@
 import 'package:aubooks/pages/tela_inicial/primary_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:aubooks/components/box_audios.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,23 +16,54 @@ class _HomePage extends State<HomePage> {
   Widget build(BuildContext context){
     final textTheme = Theme.of(context).textTheme;
     final tabs = [
-      ListView.builder(
-        padding: const EdgeInsets.all(10.0),
-        itemBuilder: (context, index) {
-          return _home(context, index);
-        },
-      ),
+      ListView(children: const <Widget>[
+        Text(
+          "minha lista",
+          style: TextStyle(
+              fontFamily: 'Sansation',
+              fontSize: 26,
+              fontWeight: FontWeight.w300,
+              color: Color(0xFFFFFFFF)
+          ),
+          textAlign: TextAlign.center,
+        )
+      ]),
+      HomePageScreen(),
+      ListView(children: const <Widget>[
+        Text(
+          "pesquisar",
+          style: TextStyle(
+              fontFamily: 'Sansation',
+              fontSize: 26,
+              fontWeight: FontWeight.w300,
+              color: Color(0xFFFFFFFF)
+          ),
+          textAlign: TextAlign.center,
+        )
+      ]),
+      ListView(children: const <Widget>[
+        Text(
+          "conta",
+          style: TextStyle(
+              fontFamily: 'Sansation',
+              fontSize: 26,
+              fontWeight: FontWeight.w300,
+              color: Color(0xFFFFFFFF)
+          ),
+          textAlign: TextAlign.center,
+        )
+      ]),
     ];
 
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[800],
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.black54,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Color(0xFFF8BBD0).withOpacity(.70),
+        unselectedItemColor: Colors.white.withOpacity(.50),
         selectedLabelStyle: textTheme.caption,
         iconSize: 35,
         unselectedLabelStyle: textTheme.caption,
@@ -62,9 +94,59 @@ class _HomePage extends State<HomePage> {
   }
 }
 
-_home(BuildContext context, int index) {
-  return ListView(children: [
-    HeaderImageAsset()
-  ],
-  );
+class HomePageScreen extends StatelessWidget {
+  final _scrollController = ScrollController();
+  final _scrollThreshold = 200.0;
+
+
+  void _onScroll() {
+    // final maxScroll = _scrollController.position.maxScrollExtent;
+    // final currentScroll = _scrollController.position.pixels;
+    // if (maxScroll - currentScroll <= _scrollThreshold) {
+    //   Provider.of<AudioBooksNotifier>(context,listen: false).getBooks();
+    // }
+  }
+
+  _HomePageState() {
+    _scrollController.addListener(_onScroll);
+  }
+  final HomePageScreen({Key? key}) : super(key: key);
+
+  @override
+
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: ListView(
+        children: [
+          HeaderImageAsset(),
+          CustomScrollView(
+            controller: _scrollController,
+            slivers: <Widget>[
+              const SliverPadding(
+                padding: EdgeInsets.all(16.0),
+                sliver: SliverToBoxAdapter(
+                  child: Text("Most Downloaded"),
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.all(16.0),
+                sliver: SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16.0,
+                      mainAxisSpacing: 16.0
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                        (context, index) => BookGridItem(),
+                    childCount: 8,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
+

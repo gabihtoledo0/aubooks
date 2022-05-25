@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:aubooks/pages/components/logo.dart';
-import 'package:aubooks/pages/login/login.dart'
+import 'package:aubooks/components/logo.dart';
+import 'package:aubooks/pages/login/login.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({Key? key}) : super(key: key);
@@ -21,13 +21,14 @@ class _RegisterUser extends State<RegisterUser> {
   FocusNode focus = FocusNode();
 
   @override
-
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-          child: LogoImageAsset(height: 23,
-            align: Alignment.centerRight,),
+          child: LogoImageAsset(
+            height: 23,
+            align: Alignment.centerRight,
+          ),
         ),
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFF39403E)),
@@ -39,7 +40,7 @@ class _RegisterUser extends State<RegisterUser> {
         child: ListView(
           children: <Widget>[
             Container(
-            padding: const EdgeInsets.all(28.0),
+              padding: const EdgeInsets.all(28.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -47,20 +48,19 @@ class _RegisterUser extends State<RegisterUser> {
                   TextFormField(
                     controller: _nameController,
                     decoration: const InputDecoration(
-                        labelStyle: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'Sansation',
-                          fontWeight: FontWeight.w300,
-                          color: Color(0xFF39403E),
-                        ),
+                      labelStyle: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Sansation',
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFF39403E),
+                      ),
                       labelText: "Nome",
                       border: OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xFF9966DD),
-                          )),
-                      prefixIcon: Icon(Icons.person,
-                          color: Color(0xFF9966DD)),
+                        color: Color(0xFF9966DD),
+                      )),
+                      prefixIcon: Icon(Icons.person, color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.name,
                     // validator: valida.validarNome,
@@ -79,8 +79,8 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xFF9966DD),
-                          )),
+                        color: Color(0xFF9966DD),
+                      )),
                       labelText: "Sobrenome",
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.supervisor_account,
@@ -104,11 +104,12 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xFF9966DD),
-                          )),
+                        color: Color(0xFF9966DD),
+                      )),
                       labelText: "Celular",
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.local_phone, color: Color(0xFF9966DD)),
+                      prefixIcon:
+                          Icon(Icons.local_phone, color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.phone,
                     // validator: valida.validarCelular,
@@ -127,12 +128,12 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xFF9966DD),
-                          )),
+                        color: Color(0xFF9966DD),
+                      )),
                       labelText: "Data de Nascimento",
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.date_range,
-                          color: Color(0xFF9966DD)),
+                      prefixIcon:
+                          Icon(Icons.date_range, color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.datetime,
                     // validator: valida.validarNome,
@@ -151,12 +152,11 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xFF9966DD),
-                          )),
+                        color: Color(0xFF9966DD),
+                      )),
                       labelText: "Email",
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.email,
-                          color: Color(0xFF9966DD)),
+                      prefixIcon: Icon(Icons.email, color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.emailAddress,
                     // validator: valida.validarEmail,
@@ -175,12 +175,11 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xFF9966DD),
-                          )),
+                        color: Color(0xFF9966DD),
+                      )),
                       labelText: "Senha",
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.vpn_key,
-                          color: Color(0xFF9966DD)),
+                      prefixIcon: Icon(Icons.vpn_key, color: Color(0xFF9966DD)),
                     ),
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
@@ -200,11 +199,11 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xFF9966DD),
-                          )),
+                        color: Color(0xFF9966DD),
+                      )),
                       labelText: "Confirme sua senha",
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.vpn_key,  color: Color(0xFF9966DD)),
+                      prefixIcon: Icon(Icons.vpn_key, color: Color(0xFF9966DD)),
                     ),
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
@@ -215,7 +214,7 @@ class _RegisterUser extends State<RegisterUser> {
                     //     return "As senhas não conferem";
                     // },
                   ),
-                  const  SizedBox(
+                  const SizedBox(
                     height: 28.0,
                   ),
                   SizedBox(
@@ -227,8 +226,8 @@ class _RegisterUser extends State<RegisterUser> {
                           side: BorderSide(color: Color(0xFFF8BBD0))),
                       child: const Text(
                         "Assinar gratuitamente",
-                        style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                       textColor: Colors.white,
                       color: Color(0xFF9966DD),
@@ -282,9 +281,7 @@ showSucessDialog(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) =>
-                LoginScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     },
   );

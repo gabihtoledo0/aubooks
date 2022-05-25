@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aubooks/pages/components/logo.dart';
+import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/register/registerUser.dart';
 import 'package:aubooks/pages/home/homepage.dart';
 
