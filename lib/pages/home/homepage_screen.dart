@@ -1,6 +1,8 @@
 import 'package:aubooks/pages/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/box_audios.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -28,43 +30,162 @@ class _HomePageScreen extends State<HomePageScreen> {
   @override
 
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      controller: _scrollController,
-      slivers: <Widget>[
-        const SliverPadding(
-          padding: EdgeInsets.only(top: 24),
-          sliver: SliverToBoxAdapter(
-            child: HeaderImageAsset(),
+    return ListView(
+      children: <Widget>[
+        const HeaderImageAsset(),
+        const SizedBox(
+          height: 40,
+        ),
+        const Padding(
+          padding: EdgeInsets.only(left: 24, bottom: 18),
+          child: Text(
+            "Pra você",
+            style: TextStyle(
+                fontFamily: 'Sansation',
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFFFFFFF)
+            ),
           ),
         ),
-        const SliverPadding(
-          padding: EdgeInsets.only(top: 32, bottom: 24, right: 24, left: 24),
-          sliver: SliverToBoxAdapter(
-            child: Text(
-              "Audiobooks",
-              style: TextStyle(
-                  fontFamily: 'Sansation',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w300,
-                  color: Color(0xFFFFFFFF)
-              ),
-            )
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            aspectRatio: 16/8,
+            viewportFraction: 0.4,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            scrollDirection: Axis.horizontal,
+          ),
+          itemCount: 8,
+          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+              const Padding(
+                padding: EdgeInsets.only(right: 10),
+                child: BookGridItem(),
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.only(
-              left: 24, right: 24, bottom: 24
+        const SizedBox(
+          height: 30,
+        ),
+        const Padding(
+          padding: EdgeInsets.only(left: 24, bottom: 18),
+          child: Text(
+            "Romance",
+            style: TextStyle(
+                fontFamily: 'Sansation',
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFFFFFFF)
+            ),
           ),
-          sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16.0,
-                mainAxisSpacing: 16.0
+        ),
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            aspectRatio: 16/8,
+            viewportFraction: 0.4,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            scrollDirection: Axis.horizontal,
+          ),
+          itemCount: 8,
+          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+          const Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: BookGridItem(),
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        const Padding(
+          padding: EdgeInsets.only(left: 24, bottom: 18),
+          child: Text(
+            "Suspense",
+            style: TextStyle(
+                fontFamily: 'Sansation',
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFFFFFFF)
             ),
-            delegate: SliverChildBuilderDelegate(
-                  (context, index) => const BookGridItem(),
-              childCount: 20,
+          ),
+        ),
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            aspectRatio: 16/8,
+            viewportFraction: 0.4,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            scrollDirection: Axis.horizontal,
+          ),
+          itemCount: 8,
+          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+          const Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: BookGridItem(),
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        const Padding(
+          padding: EdgeInsets.only(left: 24, bottom: 18),
+          child: Text(
+            "Desenho",
+            style: TextStyle(
+                fontFamily: 'Sansation',
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFFFFFFF)
             ),
+          ),
+        ),
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            aspectRatio: 16/8,
+            viewportFraction: 0.4,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            scrollDirection: Axis.horizontal,
+          ),
+          itemCount: 8,
+          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+          const Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: BookGridItem(),
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        const Padding(
+          padding: EdgeInsets.only(left: 24, bottom: 18),
+          child: Text(
+            "Documentário",
+            style: TextStyle(
+                fontFamily: 'Sansation',
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFFFFFFF)
+            ),
+          ),
+        ),
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            aspectRatio: 16/8,
+            viewportFraction: 0.4,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            scrollDirection: Axis.horizontal,
+          ),
+          itemCount: 8,
+          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+          const Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: BookGridItem(),
           ),
         ),
       ],

@@ -13,7 +13,7 @@ class BookGridItem extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Hero(
-            tag: "nome-livro_image",
+            tag: "nome-livro-image",
             child: Container(
               decoration: BoxDecoration(
                   image: const DecorationImage(
