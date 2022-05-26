@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/register/registerUser.dart';
-import 'package:aubooks/pages/home/homepage.dart';
+import 'package:aubooks/pages/home/homepage_navigation.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -184,7 +184,7 @@ class _LoginScreen extends State<LoginScreen> {
                           // }
                           Navigator.push(context,
                             MaterialPageRoute(
-                                builder: (context) => HomePage()
+                                builder: (context) => HomePageNavigation()
                             ),
                           );
                         },

@@ -1,15 +1,14 @@
-import 'package:aubooks/pages/tela_inicial/primary_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:aubooks/components/box_audios.dart';
+import 'package:aubooks/pages/home/homepage_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePageNavigation extends StatefulWidget {
+  const HomePageNavigation({Key? key}) : super(key: key);
 
   @override
-  _HomePage createState() => _HomePage();
+  _HomePageNavigation createState() => _HomePageNavigation();
 }
 
-class _HomePage extends State<HomePage> {
+class _HomePageNavigation extends State<HomePageNavigation> {
   int _currentIndex = 0;
   @override
 
@@ -28,7 +27,7 @@ class _HomePage extends State<HomePage> {
           textAlign: TextAlign.center,
         )
       ]),
-      HomePageScreen(),
+      const HomePageScreen(),
       ListView(children: const <Widget>[
         Text(
           "pesquisar",
@@ -56,12 +55,12 @@ class _HomePage extends State<HomePage> {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.grey[800],
+      backgroundColor: Color(0xFF39403E),
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
-        backgroundColor: Colors.black54,
+        backgroundColor: Color(0xFF141415),
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white.withOpacity(.50),
         selectedLabelStyle: textTheme.caption,
@@ -94,59 +93,5 @@ class _HomePage extends State<HomePage> {
   }
 }
 
-class HomePageScreen extends StatelessWidget {
-  final _scrollController = ScrollController();
-  final _scrollThreshold = 200.0;
 
-
-  void _onScroll() {
-    // final maxScroll = _scrollController.position.maxScrollExtent;
-    // final currentScroll = _scrollController.position.pixels;
-    // if (maxScroll - currentScroll <= _scrollThreshold) {
-    //   Provider.of<AudioBooksNotifier>(context,listen: false).getBooks();
-    // }
-  }
-
-  _HomePageState() {
-    _scrollController.addListener(_onScroll);
-  }
-  final HomePageScreen({Key? key}) : super(key: key);
-
-  @override
-
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: ListView(
-        children: [
-          HeaderImageAsset(),
-          CustomScrollView(
-            controller: _scrollController,
-            slivers: <Widget>[
-              const SliverPadding(
-                padding: EdgeInsets.all(16.0),
-                sliver: SliverToBoxAdapter(
-                  child: Text("Most Downloaded"),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16.0),
-                sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16.0,
-                      mainAxisSpacing: 16.0
-                  ),
-                  delegate: SliverChildBuilderDelegate(
-                        (context, index) => BookGridItem(),
-                    childCount: 8,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
 
