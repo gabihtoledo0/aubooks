@@ -38,6 +38,7 @@ dependencies:
   path_provider: ^1.6.11
   cached_network_image: ^2.1.0+1
   carousel_slider: ^4.1.1
+  anim_search_bar: ^2.0.2
 
 dev_dependencies:
   flutter_test:
