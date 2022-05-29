@@ -12,21 +12,6 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreen extends State<HomePageScreen> {
-  final _scrollController = ScrollController();
-  final _scrollThreshold = 200.0;
-
-  void _onScroll() {
-    // final maxScroll = _scrollController.position.maxScrollExtent;
-    // final currentScroll = _scrollController.position.pixels;
-    // if (maxScroll - currentScroll <= _scrollThreshold) {
-    //   Provider.of<AudioBooksNotifier>(context,listen: false).getBooks();
-    // }
-  }
-
-  _HomePageState() {
-    _scrollController.addListener(_onScroll);
-  }
-
   @override
 
   Widget build(BuildContext context) {

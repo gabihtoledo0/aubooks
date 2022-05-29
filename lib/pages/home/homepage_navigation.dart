@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aubooks/pages/home/homepage_screen.dart';
+import 'package:aubooks/pages/home/my_list.dart';
+import 'package:aubooks/pages/home/search.dart';
 
 class HomePageNavigation extends StatefulWidget {
   const HomePageNavigation({Key? key}) : super(key: key);
@@ -15,31 +17,9 @@ class _HomePageNavigation extends State<HomePageNavigation> {
   Widget build(BuildContext context){
     final textTheme = Theme.of(context).textTheme;
     final tabs = [
-      ListView(children: const <Widget>[
-        Text(
-          "minha lista",
-          style: TextStyle(
-              fontFamily: 'Sansation',
-              fontSize: 26,
-              fontWeight: FontWeight.w300,
-              color: Color(0xFFFFFFFF)
-          ),
-          textAlign: TextAlign.center,
-        )
-      ]),
+      const MyList(),
       const HomePageScreen(),
-      ListView(children: const <Widget>[
-        Text(
-          "pesquisar",
-          style: TextStyle(
-              fontFamily: 'Sansation',
-              fontSize: 26,
-              fontWeight: FontWeight.w300,
-              color: Color(0xFFFFFFFF)
-          ),
-          textAlign: TextAlign.center,
-        )
-      ]),
+      const Search(),
       ListView(children: const <Widget>[
         Text(
           "conta",
