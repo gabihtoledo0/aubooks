@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:aubooks/pages/components/logo.dart';
 import 'package:aubooks/pages/register/registerUser.dart';
 import 'package:aubooks/pages/components/header.dart';
+import 'package:aubooks/pages/forget_my_password/forget_my_password.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -115,7 +116,7 @@ class _LoginScreen extends State<LoginScreen> {
                         onPressed: () {
                           Navigator.push(context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen()
+                                builder: (context) => ForgetMyPassword()
                             ),
                           );
                         },

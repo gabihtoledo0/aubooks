@@ -114,7 +114,7 @@ class _ChangePassword extends State<ChangePassword> {
                     onPressed: () {
                       Navigator.push(context,
                         MaterialPageRoute(
-                            builder: (context) => ConfirmPassword()
+                            builder: (context) => ()
                         ),
                       );
                     },
