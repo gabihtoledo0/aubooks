@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:aubooks/pages/components/logo.dart';
+import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/components/header.dart';
-import '../confirm_password/confirm_password.dart';
+import 'package:aubooks/pages/login/login.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword ({Key? key}) : super(key: key);
@@ -114,7 +114,7 @@ class _ChangePassword extends State<ChangePassword> {
                     onPressed: () {
                       Navigator.push(context,
                         MaterialPageRoute(
-                            builder: (context) => ()
+                            builder: (context) => LoginScreen(),
                         ),
                       );
                     },

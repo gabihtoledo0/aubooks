@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:aubooks/pages/components/logo.dart';
+import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/register/registerUser.dart';
-import 'package:aubooks/pages/components/header.dart';
 import 'package:aubooks/pages/forget_my_password/forget_my_password.dart';
+import 'package:aubooks/pages/home/homepage_navigation.dart';
+import 'package:aubooks/pages/telaInicial/primary_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -183,6 +184,11 @@ class _LoginScreen extends State<LoginScreen> {
                           // if (_formKey.currentState.validate()) {
                           //   _auth();
                           // }
+                          Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePageNavigation()
+                            ),
+                          );
                         },
                       ),
                     ),

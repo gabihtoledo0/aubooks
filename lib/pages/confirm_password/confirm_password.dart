@@ -1,9 +1,7 @@
 import 'package:aubooks/pages/change_password/change_password.dart';
 import 'package:flutter/material.dart';
-import 'package:aubooks/pages/components/logo.dart';
-import 'package:aubooks/pages/register/registerUser.dart';
+import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/components/header.dart';
-import 'package:aubooks/pages/forget_my_password/forget_my_password.dart';
 
 class ConfirmPassword extends StatefulWidget {
   const ConfirmPassword ({Key? key}) : super(key: key);

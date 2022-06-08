@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aubooks/pages/components/logo.dart';
+import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/login/login.dart';
 
 class PrimaryScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class _PrimaryScreen extends State<PrimaryScreen> {
 
   Widget build(BuildContext context){
     return Scaffold(
-        backgroundColor: Colors.green[50],
+      backgroundColor: Colors.green[50],
       body: ListView(
         children: <Widget>[
           HeaderImageAsset(),

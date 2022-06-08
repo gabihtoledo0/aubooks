@@ -1,4 +1,4 @@
-import 'package:aubooks/pages/tela_inicial/primary_screen.dart';
+import 'package:aubooks/pages/telaInicial/primary_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
