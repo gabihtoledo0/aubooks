@@ -235,7 +235,7 @@ class _RegisterUser extends State<RegisterUser> {
                       onPressed: () {
                         Navigator.push(context,
                           MaterialPageRoute(
-                            builder: (context) => HomePageNavigation(),
+                            builder: (context) => LoginScreen(),
                           ),
                         );
 
