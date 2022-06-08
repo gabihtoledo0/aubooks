@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/register/registerUser.dart';
+import 'package:aubooks/pages/forget_my_password/forget_my_password.dart';
 import 'package:aubooks/pages/home/homepage_navigation.dart';
+import 'package:aubooks/pages/telaInicial/primary_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -115,7 +117,7 @@ class _LoginScreen extends State<LoginScreen> {
                         onPressed: () {
                           Navigator.push(context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen()
+                                builder: (context) => ForgetMyPassword()
                             ),
                           );
                         },
@@ -226,20 +228,6 @@ class _LoginScreen extends State<LoginScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class HeaderImageAsset extends StatelessWidget {
-  const HeaderImageAsset({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    AssetImage assetImage = const AssetImage('images/header.png');
-    Image image = Image(image: assetImage, height: 60,
-        fit:BoxFit.fitWidth);
-    return Container(
-      child: image,
     );
   }
 }

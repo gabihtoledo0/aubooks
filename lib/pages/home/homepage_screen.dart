@@ -1,8 +1,7 @@
-import 'package:aubooks/pages/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/box_audios.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'package:aubooks/components/header.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
