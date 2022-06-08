@@ -1,3 +1,4 @@
+import 'package:aubooks/pages/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/pages/components/logo.dart';
 import 'package:aubooks/pages/components/header.dart';
@@ -12,6 +13,7 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePassword extends State<ChangePassword> {
   final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _confSenhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +73,7 @@ class _ChangePassword extends State<ChangePassword> {
                   height: 30.0,
                 ),
                 TextFormField(
-                  cursorColor: const Color(0xFF39403E),
-                  controller: _senhaController,
-                  obscureText: true,
+                  controller: _confSenhaController,
                   decoration: const InputDecoration(
                     labelStyle: TextStyle(
                       fontSize: 18,
@@ -85,12 +85,18 @@ class _ChangePassword extends State<ChangePassword> {
                         borderSide: BorderSide(
                           color: Color(0xFF9966DD),
                         )),
+                    labelText: "Confirme sua senha",
                     border: OutlineInputBorder(),
-                    labelText: "Confirme sua Senha",
-                    prefixIcon: Icon
-                      (Icons.vpn_key, color: Color(0xFF9966DD)),
+                    prefixIcon: Icon(Icons.vpn_key,  color: Color(0xFF9966DD)),
                   ),
+                  obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
+                  // validator: (_confSenhaController) {
+                  //   final senha = _senhaController.text;
+                  //   if (_confSenhaController.isEmpty ||
+                  //       _confSenhaController != senha)
+                  //     return "As senhas não conferem";
+                  // },
                 ),
                 const SizedBox(
                   height: 30.0,
@@ -114,7 +120,7 @@ class _ChangePassword extends State<ChangePassword> {
                     onPressed: () {
                       Navigator.push(context,
                         MaterialPageRoute(
-                            builder: (context) => ()
+                            builder: (context) =>LoginScreen()
                         ),
                       );
                     },
