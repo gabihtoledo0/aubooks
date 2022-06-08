@@ -17,7 +17,7 @@ class BookGridItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                   image: const DecorationImage(
-                    image: CachedNetworkImageProvider("https://www.seti.org/sites/default/files/styles/original/public/2019-09/Zork%20alien%20head%20PPR.jpg?itok=T7eTYzCZ"),
+                    image: CachedNetworkImageProvider("https://m.media-amazon.com/images/I/51qnfeR7uCL.jpg"),
                       fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.circular(10.0)

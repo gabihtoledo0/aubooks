@@ -1,3 +1,4 @@
+import 'package:aubooks/pages/home/homepage_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/login/login.dart';
@@ -232,6 +233,12 @@ class _RegisterUser extends State<RegisterUser> {
                       textColor: Colors.white,
                       color: Color(0xFF9966DD),
                       onPressed: () {
+                        Navigator.push(context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePageNavigation(),
+                          ),
+                        );
+
                         // if (_formKey.currentState.validate()) {
                         //   register();
                         // }
