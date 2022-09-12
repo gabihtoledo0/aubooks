@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:aubooks/resources/models/models.dart';
 
 class BookGridItem extends StatelessWidget {
-  // final Book book;
-  // final void Function() onTap;
-  const BookGridItem({Key? key}) : super(key: key);
+  final Book book;
+  final void Function() onTap;
+  const BookGridItem({Key? key, required this.book, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {},
+      onTap: onTap,
       child: Stack(
         children: <Widget>[
           Hero(
-            tag: "nome-livro-image",
+            tag: "${book.id}_image",
             child: Container(
               decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: CachedNetworkImageProvider("https://m.media-amazon.com/images/I/51qnfeR7uCL.jpg"),
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(book.image),
                       fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.circular(10.0)

@@ -1,12 +1,14 @@
 import 'package:aubooks/pages/telaInicial/primary_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:audio_service/audio_service.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(AudioServiceWidget(child: const AuBooksApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class AuBooksApp extends StatelessWidget {
+  const AuBooksApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
