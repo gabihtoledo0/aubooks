@@ -3,6 +3,8 @@ import 'package:aubooks/components/header.dart';
 import 'package:aubooks/components/box_audios.dart';
 import 'package:aubooks/resources/notifiers/audio_books_notifier.dart';
 import 'package:provider/provider.dart';
+import 'package:aubooks/resources/models/models.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MyList extends StatefulWidget {
   const MyList({Key? key}) : super(key: key);
@@ -26,6 +28,7 @@ class _MyList extends State<MyList> {
   _MyList() {
     _scrollController.addListener(_onScroll);
   }
+
   @override
 
   Widget build(BuildContext context) {
@@ -64,8 +67,12 @@ class _MyList extends State<MyList> {
                         mainAxisSpacing: 16.0
                     ),
                     delegate: SliverChildBuilderDelegate(
-                          (context, index) => BookGridItem(book: notifier.topBooks[index], onTap: () => {}),
-                      childCount: 5,
+                            (context, index) => index >= notifier.books.length
+                            ? BottomLoader()
+                            : _buildBookItem(context,index,notifier.books),
+                      childCount: notifier.hasReachedMax
+                    ? notifier.books.length
+                        : notifier.books.length + 1,
                     ),
                   ),
                 ),
@@ -74,7 +81,40 @@ class _MyList extends State<MyList> {
           }
       ),
     );
+  }
 
+  Widget _buildBookItem(BuildContext context, int index, List<Book> books) {
+    Book book = books[index];
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        ListTile(
+          title: Text(book.title),
+          leading: CircleAvatar(
+            backgroundImage: CachedNetworkImageProvider(book.image),
+          ),
+          onTap: () => {},
+        ),
+        Divider(),
+      ],
+    );
+  }
+}
 
+class BottomLoader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      child: Center(
+        child: SizedBox(
+          width: 33,
+          height: 33,
+          child: CircularProgressIndicator(
+            strokeWidth: 1.5,
+          ),
+        ),
+      ),
+    );
   }
 }

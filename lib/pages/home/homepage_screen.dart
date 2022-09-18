@@ -13,35 +13,7 @@ class HomePageScreen extends StatefulWidget {
   _HomePageScreen createState() => _HomePageScreen();
 }
 
-class _HomePageScreen extends State<HomePageScreen> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    connect();
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    disconnect();
-    super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        connect();
-        break;
-      case AppLifecycleState.paused:
-        disconnect();
-        break;
-    default:
-      break;
-    }
-  }
-
+class _HomePageScreen extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -204,13 +176,5 @@ class _HomePageScreen extends State<HomePageScreen> with WidgetsBindingObserver 
     // ),
       ],
     );
-  }
-
-  void connect() async {
-  await AudioService.connect();
-  }
-
-  void disconnect() {
-  AudioService.disconnect();
   }
 }
