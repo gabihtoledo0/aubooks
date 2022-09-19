@@ -48,7 +48,7 @@ class _MyList extends State<MyList> {
                   padding: EdgeInsets.only(left: 24, top: 40, bottom: 18),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      "Minha Lista",
+                      "Mais baixados",
                       style: TextStyle(
                           fontFamily: 'Sansation',
                           fontSize: 22,

@@ -42,14 +42,14 @@ class BookGridItem extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                Spacer(),
-                Text("Título", style: TextStyle(
+              children: <Widget>[
+                const Spacer(),
+                Text(book.title, style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold
                 ),),
-                Text("Autor", style: TextStyle(
+                Text(book.author, style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12
                 ),)

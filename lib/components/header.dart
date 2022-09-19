@@ -6,7 +6,7 @@ class HeaderImageAsset extends StatelessWidget {
   @override
     Widget build(BuildContext context) {
       AssetImage assetImage = AssetImage('images/header.png');
-      Image image = Image(image: assetImage, height: 200,
+      Image image = Image(image: assetImage, height: 65,
       fit:BoxFit.fitWidth);
       return Container(
           child: image,

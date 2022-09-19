@@ -17,7 +17,6 @@ class AudioBooksNotifier with ChangeNotifier {
   UnmodifiableListView<Book> get topBooks => UnmodifiableListView(_top);
 
   AudioBooksNotifier() {
-    print('LIVROS: $_books');
     if(_books.isEmpty)
       getBooks();
     getTopBooks();
@@ -45,9 +44,6 @@ class AudioBooksNotifier with ChangeNotifier {
         _hasReachedMax = true;
       else
         _books.addAll(res);
-      if (kDebugMode) {
-        print('livros: $res');
-      }
     }catch(e) {
       print(e);
     }

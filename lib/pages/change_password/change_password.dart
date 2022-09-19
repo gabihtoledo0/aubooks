@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
-import 'package:aubooks/pages/components/header.dart';
+import 'package:aubooks/components/header.dart';
 import 'package:aubooks/pages/login/login.dart';
 
 class ChangePassword extends StatefulWidget {
