@@ -11,7 +11,7 @@ class HomePageNavigation extends StatefulWidget {
 }
 
 class _HomePageNavigation extends State<HomePageNavigation> {
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   @override
 
   Widget build(BuildContext context){
@@ -52,7 +52,7 @@ class _HomePageNavigation extends State<HomePageNavigation> {
         },
         items: const [
           BottomNavigationBarItem(
-            label: 'Minha Lista',
+            label: 'Mais Baixados',
             icon: Icon(Icons.format_list_bulleted),
           ),
           BottomNavigationBarItem(
