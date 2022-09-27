@@ -32,9 +32,34 @@ class _MyList extends State<MyList> {
   @override
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer(
-          builder: (BuildContext context, AudioBooksNotifier notifier, _){
+    return Consumer(
+          builder: (BuildContext context, AudioBooksNotifier notifier, _) {
+            if (notifier.topBooks.isEmpty) {
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: const <Widget>[
+                  SliverToBoxAdapter(
+                    child: HeaderImageAsset(),
+                  ),
+                  SliverPadding(
+                    padding: EdgeInsets.only(top: 64),
+                    sliver: SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(
+                          "Sem livros baixados no momento",
+                          style: TextStyle(
+                              fontFamily: 'Sansation',
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFFFFFFFF)
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
             return CustomScrollView(
               controller: _scrollController,
               slivers: <Widget>[
@@ -59,7 +84,7 @@ class _MyList extends State<MyList> {
                   ),
                 ),
                 SliverPadding(
-                  padding: const EdgeInsets.only(right: 20, left: 20, bottom: 30),
+                  padding: const EdgeInsets.all(16.0),
                   sliver: SliverGrid(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -67,36 +92,16 @@ class _MyList extends State<MyList> {
                         mainAxisSpacing: 16.0
                     ),
                     delegate: SliverChildBuilderDelegate(
-                            (context, index) => index >= notifier.books.length
-                            ? BottomLoader()
-                            : _buildBookItem(context,index,notifier.books),
-                      childCount: notifier.hasReachedMax
-                    ? notifier.books.length
-                        : notifier.books.length + 1,
+                          (context, index) =>
+                          BookGridItem(
+                              book: notifier.topBooks[index], onTap: () => {}),
+                      childCount: notifier.topBooks.length,
                     ),
                   ),
                 ),
               ],
             );
           }
-      ),
-    );
-  }
-
-  Widget _buildBookItem(BuildContext context, int index, List<Book> books) {
-    Book book = books[index];
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        ListTile(
-          title: Text(book.title),
-          leading: CircleAvatar(
-            backgroundImage: CachedNetworkImageProvider(book.image),
-          ),
-          onTap: () => {},
-        ),
-        Divider(),
-      ],
     );
   }
 }

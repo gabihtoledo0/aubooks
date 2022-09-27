@@ -52,7 +52,7 @@ class _HomePageNavigation extends State<HomePageNavigation> {
         },
         items: const [
           BottomNavigationBarItem(
-            label: 'Minha Lista',
+            label: 'Mais Baixados',
             icon: Icon(Icons.format_list_bulleted),
           ),
           BottomNavigationBarItem(

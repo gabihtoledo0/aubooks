@@ -41,7 +41,7 @@ class _HomePageScreen extends State<HomePageScreen> {
                   padding: EdgeInsets.only(left: 24, top: 24, bottom: 18),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      "Mais baixados",
+                      "Livros Recentes",
                       style: TextStyle(
                           fontFamily: 'Sansation',
                           fontSize: 22,
