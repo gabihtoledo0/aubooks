@@ -10,7 +10,6 @@ class AudioFile{
   final int track;
   final int size;
 
-
   AudioFile.fromJson(Map json):
         bookId=json["book_id"],
         title=json["title"],

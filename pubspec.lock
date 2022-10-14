@@ -22,20 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.11.2"
-  audioplayer:
+  audioplayers:
     dependency: "direct main"
     description:
-      name: audioplayer
+      name: audioplayers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.1"
-  audioplayer_web:
-    dependency: "direct main"
-    description:
-      name: audioplayer_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.1"
+    version: "0.15.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -133,7 +126,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.2"
+    version: "6.1.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -461,9 +454,9 @@ packages:
       name: typed_data
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.3.1"
   uuid:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: uuid
       url: "https://pub.dartlang.org"
@@ -482,7 +475,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.2"
+    version: "2.6.1"
   xdg_directories:
     dependency: transitive
     description:
@@ -491,5 +484,5 @@ packages:
     source: hosted
     version: "0.1.2"
 sdks:
-  dart: ">=2.17.0-0 <3.0.0"
+  dart: ">=2.17.0 <3.0.0"
   flutter: ">=1.22.2"

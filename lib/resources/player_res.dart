@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:audio_service/audio_service.dart';
 import 'package:aubooks/resources/books_db_provider.dart';
 import 'package:aubooks/resources/models/book.dart';
-import 'package:audioplayer/audioplayer.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models/audiofile.dart';
 
@@ -32,22 +32,23 @@ MediaControl prevControl = const MediaControl(
   action: MediaAction.skipToPrevious,
 );
 
+void _backgroundAudioPlayerTask() async {
+  print("chegou");
+  AudioServiceBackground.run(() => CustomAudioPlayer());
+}
+
 Future<bool> start() async {
   print("starting");
+
   return await AudioService.start(
-    backgroundTaskEntrypoint: backgroundAudioPlayerTask,
-    androidNotificationChannelName: "AudioBooksApp",
+    backgroundTaskEntrypoint: _backgroundAudioPlayerTask,
+    androidNotificationChannelName: "AuBooksApp",
     androidNotificationIcon: 'mipmap/ic_launcher',
   );
 }
 
-void backgroundAudioPlayerTask() async {
-  CustomAudioPlayer player = CustomAudioPlayer();
-  AudioServiceBackground.run(() => player);
-}
-
 class CustomAudioPlayer extends BackgroundAudioTask {
-  AudioPlayer _audioPlayer = new AudioPlayer();
+  final AudioPlayer _audioPlayer = AudioPlayer();
   String streamUri = 'http://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3';
   String? bookId;
   int index = 0;
@@ -63,7 +64,6 @@ class CustomAudioPlayer extends BackgroundAudioTask {
     index = (await SharedPreferences.getInstance()).getInt("track");
     audiofiles = await DatabaseHelper().fetchAudioFiles(bookId ?? "");
     book = await DatabaseHelper().getBook(bookId ?? "");
-
     var playerStateSubscription = _audioPlayer.onPlayerStateChanged
         .where((state) => state == AudioPlayerState.COMPLETED)
         .listen((state) {
@@ -121,11 +121,11 @@ class CustomAudioPlayer extends BackgroundAudioTask {
     MediaItem mediaItem = MediaItem(
         id: 'bookid',
         album: book != null ? book?.title : "Unknown",
-        title: audiofiles?[index].title,
+        title: audiofiles![index].title,
         artist: book != null ? book?.author : "Unknown");
 
     AudioServiceBackground.setMediaItem(mediaItem);
-    _audioPlayer.play(audiofiles?[index].url);
+    _audioPlayer.play(audiofiles![index].url);
     if (_position == null) {
       // There may be a delay while the AudioPlayer plugin connects.
       AudioServiceBackground.setState(
@@ -142,7 +142,7 @@ class CustomAudioPlayer extends BackgroundAudioTask {
 
   void onSkipToNext() {
     index++;
-    if (index == audiofiles?.length) {
+    if (index == audiofiles!.length) {
       onStop();
       return;
     }
@@ -185,7 +185,7 @@ class CustomAudioPlayer extends BackgroundAudioTask {
 
   @override
   Future<void> onStop() async {
-    _audioPlayer.stop();
+    _audioPlayer.release();
     print("audioplayer released");
     AudioServiceBackground.setState(
       controls: [],
