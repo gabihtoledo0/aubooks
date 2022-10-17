@@ -41,10 +41,11 @@ dependencies:
   flutter_html: ^0.11.1
   shared_preferences: ^0.5.7
   cached_network_image: ^2.1.0+1
+  rxdart: ^0.24.0
   carousel_slider: ^4.1.1
   anim_search_bar: ^2.0.2
-#  flutter_downloader: ^1.1.7
-#  audioplayer: 0.8.1
+  miniplayer: ^1.0.1
+  #  flutter_downloader: ^1.1.7
   audioplayers: ^0.15.1
 #  audioplayer_web: 0.7.14
   uuid: ^2.0.4

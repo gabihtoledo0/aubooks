@@ -33,7 +33,6 @@ MediaControl prevControl = const MediaControl(
 );
 
 void _backgroundAudioPlayerTask() async {
-  print("chegou");
   AudioServiceBackground.run(() => CustomAudioPlayer());
 }
 
@@ -49,6 +48,7 @@ Future<bool> start() async {
 
 class CustomAudioPlayer extends BackgroundAudioTask {
   final AudioPlayer _audioPlayer = AudioPlayer();
+
   String streamUri = 'http://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3';
   String? bookId;
   int index = 0;
@@ -118,6 +118,7 @@ class CustomAudioPlayer extends BackgroundAudioTask {
   @override
   void onPlay() {
     print("Playing track $index");
+
     MediaItem mediaItem = MediaItem(
         id: 'bookid',
         album: book != null ? book?.title : "Unknown",

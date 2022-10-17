@@ -6,10 +6,8 @@ import 'package:aubooks/widgets/player_service.dart';
 import 'package:aubooks/widgets/player_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
 // import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailPage extends StatefulWidget {
@@ -127,9 +125,6 @@ class DetailPageState extends State<DetailPage> {
                                 toplay = true;
                               });
                               // AudioService.stop();
-                              //teste
-                              print(item.url);
-
                               start();
                               setState(() {
                                 url = item.url;
