@@ -45,6 +45,7 @@ dependencies:
   carousel_slider: ^4.1.1
   anim_search_bar: ^2.0.2
   miniplayer: ^1.0.1
+  audio_video_progress_bar: ^0.11.0
   #  flutter_downloader: ^1.1.7
   audioplayers: ^0.15.1
 #  audioplayer_web: 0.7.14

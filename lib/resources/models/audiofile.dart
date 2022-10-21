@@ -31,6 +31,7 @@ class AudioFile{
   static List<AudioFile> fromJsonArray(List json) {
     List<AudioFile> audiofiles = <AudioFile>[];
     json.forEach((audiofile)=>audiofiles.add(AudioFile.fromJson(audiofile)));
+    print(json);
     return audiofiles;
   }
   static List<AudioFile> fromDBArray(List json) {

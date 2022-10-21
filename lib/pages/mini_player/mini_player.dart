@@ -1,47 +1,29 @@
-import 'package:aubooks/pages/home/homepage_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:miniplayer/miniplayer.dart';
-import 'package:aubooks/pages/home/book_details.dart';
+import 'package:aubooks/resources/models/models.dart';
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 
-class MiniPlayer extends StatefulWidget {
-  const MiniPlayer({Key? key}) : super(key: key);
-
-  @override
-  _MiniPlayer createState() => _MiniPlayer();
-}
-
-class _MiniPlayer extends State<MiniPlayer> {
-  final _navigatorKey = GlobalKey();
+class MiniPlayer extends StatelessWidget {
+  final book;
+  const MiniPlayer({Key? key, required this.book}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MiniplayerWillPopScope(
-      onWillPop: () async {
-        final GlobalKey<NavigatorState>? navigator = _navigatorKey.currentState;
-        if (!navigator.canPop()) return true;
-        navigator.pop();
-
-        return false;
-      },
-      child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Navigator(
-              key: _navigatorKey,
-              onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
-                settings: settings,
-                builder: (BuildContext context) => HomePageScreen(),
-              ),
-            ),
-            Miniplayer(
-              minHeight: 70,
-              maxHeight: 370,
-              builder: (height, percentage) => Center(
-              child: Text('$height, $percentage'),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(book.title),
+      ),
+      backgroundColor: Color(0xFF39403E),
+      body: ListView(
+          children: [
+            ProgressBar(
+              progress: Duration(milliseconds: 1000),
+              buffered: Duration(milliseconds: 2000),
+              total: Duration(milliseconds: 5000),
+              onSeek: (duration) {
+                print('User selected a new time: $duration');
+              },
             ),
           ],
-        ),
       ),
     );
   }

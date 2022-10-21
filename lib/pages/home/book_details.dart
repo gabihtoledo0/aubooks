@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 // import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:aubooks/pages/mini_player/mini_player.dart';
 
 class DetailPage extends StatefulWidget {
   final Book book;
@@ -119,6 +120,7 @@ class DetailPageState extends State<DetailPage> {
                               // if(url == item.url) AudioService.play();
                               SharedPreferences prefs = await SharedPreferences.getInstance();
                               await prefs.setString("play_url", item.url);
+
                               await prefs.setString("book_id", item.bookId);
                               await prefs.setInt("track", snapshot.data!.indexOf(item));
                               setState(() {
@@ -130,6 +132,13 @@ class DetailPageState extends State<DetailPage> {
                                 url = item.url;
                                 title = item.title;
                               });
+                              print(widget.book.id);
+
+                              Navigator.push(context,
+                                MaterialPageRoute(
+                                    builder: (context) => MiniPlayer(book: item)
+                                ),
+                              );
                             },
                           )).toList(),
                         );
@@ -140,15 +149,6 @@ class DetailPageState extends State<DetailPage> {
                   ),
                 )
               ],
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                color: Colors.grey.shade300,
-                child: PlayerService(),
-              ),
             ),
           ],
         )
