@@ -1,8 +1,6 @@
 import 'package:aubooks/pages/telaInicial/primary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_service/audio_service.dart';
-import 'package:aubooks/resources/notifiers/audio_books_notifier.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,17 +44,14 @@ class _AuBooksAppState extends State<AuBooksApp> with WidgetsBindingObserver {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AudioBooksNotifier(),
-      child: MaterialApp(
+    return MaterialApp(
         title: 'Login App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: PrimaryScreen(),
-      ),
-    );
+        home: const PrimaryScreen(),
+      );
   }
 
   void connect() async {
