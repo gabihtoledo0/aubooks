@@ -111,51 +111,44 @@ class _PlayerWidgetState extends State<PlayerWidget> {
             ),
           ),
         ),
-          ProgressBar(
-            progress: Duration.zero,
-            total: Duration(milliseconds: _duration != null ? _duration!.inMilliseconds.toInt() : 100),
-            onSeek: (duration) {
-              print('User selected a new time: $duration');
-            },
+        IconButton(
+          color: Theme.of(context).primaryColor,
+          onPressed: _isPlaying ? () => _pause() : () => _play(),
+          iconSize: 32.0,
+          icon: new Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
+        ),
+        IconButton(
+          color: Colors.red,
+          onPressed: _isPlaying || _isPaused ? () => _stop() : null,
+          iconSize: 32.0,
+          icon: new Icon(Icons.stop),
+        ),
+        Text(
+          _position != null
+              ? '${_positionText ?? ''} / ${_durationText ?? ''}'
+              : _duration != null ? _durationText : '',
+          style: new TextStyle(fontSize: 16.0),
+        ),
+        Expanded(
+          child: Slider(
+            min: 0.0,
+            max: _duration != null ? _duration!.inMilliseconds.toDouble() : 100,
+            onChanged: _duration != null ? _onSeek : null,
+            value: (_position != null)
+                ? _position!.inMilliseconds.toDouble()
+                : 0.0,
+            // valueColor: new AlwaysStoppedAnimation(Colors.cyan),
           ),
-          // ListView(
-          //   children: [
-          //     Container(
-          //       child: Row(
-          //         children: [
-          //           IconButton(
-          //             color: Theme.of(context).primaryColor,
-          //             onPressed: _isPlaying ? () => _pause() : () => _play(),
-          //             iconSize: 32.0,
-          //             icon: new Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
-          //           ),
-          //           IconButton(
-          //             color: Colors.red,
-          //             onPressed: _isPlaying || _isPaused ? () => _stop() : null,
-          //             iconSize: 32.0,
-          //             icon: new Icon(Icons.stop),
-          //           ),
-          //           Text(
-          //             _position != null
-          //                 ? '${_positionText ?? ''} / ${_durationText ?? ''}'
-          //                 : _duration != null ? _durationText : '',
-          //             style: new TextStyle(fontSize: 16.0),
-          //           ),
-          //           Expanded(
-          //             child: Slider(
-          //               min: 0.0,
-          //               max: _duration != null ? _duration!.inMilliseconds.toDouble() : 100,
-          //               onChanged: _duration != null ? _onSeek : null,
-          //               value: (_position != null)
-          //                   ? _position!.inMilliseconds.toDouble()
-          //                   : 0.0,
-          //               // valueColor: new AlwaysStoppedAnimation(Colors.cyan),
-          //             ),
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   ],
+        ),
+          // ProgressBar(
+          //   progress: Duration(milliseconds: _position != null ? _position!.inMilliseconds.toInt() : 0),
+          //   total: Duration(milliseconds: _duration != null ? _duration!.inMilliseconds.toInt() : 100),
+          //   onSeek: (duration) {
+          //     setState(() {
+          //       _position = Duration(milliseconds: duration.inMilliseconds.toInt());
+          //     });
+          //     return _audioPlayer!.seek(Duration(milliseconds: duration.inMilliseconds.toInt()));
+          //   },
           // ),
            Row(
             children: const [
@@ -168,7 +161,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   }
 
   void _initAudioPlayer() {
-    _audioPlayer = AudioPlayer();
+    _audioPlayer = AudioPlayer(mode: mode);
     _durationSubscription =
         _audioPlayer?.onDurationChanged.listen((duration) => setState(() {
               _duration = duration;
