@@ -57,6 +57,7 @@ class AudioFile{
   }
 
   static String toJsonArray(List<AudioFile> audiofiles){
+    print(json.encode(audiofiles.map((audiofile)=>audiofile.toMap()).toList()));
     return json.encode(audiofiles.map((audiofile)=>audiofile.toMap()).toList());
   }
 

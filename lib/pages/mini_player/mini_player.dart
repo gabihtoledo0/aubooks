@@ -16,9 +16,8 @@ class MiniPlayer extends StatelessWidget {
       body: ListView(
           children: [
             ProgressBar(
-              progress: Duration(milliseconds: 1000),
-              buffered: Duration(milliseconds: 2000),
-              total: Duration(milliseconds: 5000),
+              progress: Duration.zero,
+              total: Duration(milliseconds: book.size),
               onSeek: (duration) {
                 print('User selected a new time: $duration');
               },

@@ -132,11 +132,14 @@ class DetailPageState extends State<DetailPage> {
                                 url = item.url;
                                 title = item.title;
                               });
-                              print(widget.book.id);
+                              // print(item.size);
+                              // print(item.url);
+                              // print(widget.book.id);
 
                               Navigator.push(context,
                                 MaterialPageRoute(
-                                    builder: (context) => MiniPlayer(book: item)
+                                    builder: (context) => PlayerWidget(key: Key(item.url),
+                                      url: item.url, title: item.title),
                                 ),
                               );
                             },
@@ -147,7 +150,7 @@ class DetailPageState extends State<DetailPage> {
                       }
                     },
                   ),
-                )
+                ),
               ],
             ),
           ],
