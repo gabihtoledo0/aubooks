@@ -47,7 +47,7 @@ class PlayerService extends StatelessWidget {
   IconButton baseButton(IconData icon, Function onPressed) => IconButton(
     color: Colors.pink,
     iconSize: 32.0,
-    onPressed: AudioService.play,
+    onPressed: onPressed(),
     icon: Icon(icon),
   );
 

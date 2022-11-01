@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 // import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:aubooks/pages/mini_player/mini_player.dart';
 
 class DetailPage extends StatefulWidget {
   final Book book;
@@ -20,7 +19,6 @@ class DetailPage extends StatefulWidget {
     return DetailPageState();
   }
 }
-
 
 class DetailPageState extends State<DetailPage> {
   var taskId;
@@ -134,12 +132,11 @@ class DetailPageState extends State<DetailPage> {
                               });
                               // print(item.size);
                               // print(item.url);
-                              // print(widget.book.id);
 
                               Navigator.push(context,
                                 MaterialPageRoute(
                                     builder: (context) => PlayerWidget(key: Key(item.url),
-                                      url: item.url, title: item.title),
+                                      url: item.url, title: item.title, image: widget.book.image),
                                 ),
                               );
                             },
