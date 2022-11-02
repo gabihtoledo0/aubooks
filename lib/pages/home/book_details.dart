@@ -134,8 +134,7 @@ class DetailPageState extends State<DetailPage> {
                               Navigator.push(context,
                                 MaterialPageRoute(
                                     builder: (context) => PlayerWidget(key: Key(item.url),
-                                      url: item.url, title: item.title, image: widget.book.image,
-                                        queuee: snapshot.data),
+                                      url: item.url, title: item.title, image: widget.book.image),
                                 ),
                               );
                             },

@@ -1,6 +1,5 @@
 import 'dart:math';
-import 'package:just_audio/just_audio.dart';
-import 'package:aubooks/resources/player.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:audio_service/audio_service.dart';
@@ -10,205 +9,153 @@ class PlayerWidget extends StatefulWidget {
   final String url;
   final String title;
   final String image;
-  final queuee;
 
-  PlayerWidget({key, required this.url, required this.title, required this.image, required this.queuee}):super(key:key);
+  PlayerWidget({key, required this.url, required this.title, required this.image}):super(key:key);
 
   @override
   State<StatefulWidget> createState() {
-    return _PlayerState(url, title, image, queuee);
+    return _PlayerState(url, title, image);
   }
 }
 
 class _PlayerState extends State<PlayerWidget> {
-  final BehaviorSubject<double> _dragPositionSubject = BehaviorSubject.seeded(null);
-  // final audioPlayer = AudioPlayer();
+  final audioPlayer = AudioPlayer();
   String url;
-  final queuee;
   String image;
   String title;
   bool isPlaying = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
-  bool _loading = false;
 
-  _PlayerState(this.url, this.title, this.image, this.queuee);
+  _PlayerState(this.url, this.title, this.image);
 
   @override
   void initState() {
     super.initState();
-    _loading = false;
-  }
 
-  // @override
-  // void dispose(){
-  //   audioPlayer.dispose();
-  //   super.dispose();
-  // }
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == AudioPlayerState.PLAYING;
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState((){
+        duration = newDuration;
+      });
+    });
+
+    audioPlayer.onAudioPositionChanged.listen((newPosition) {
+      setState((){
+        position = newPosition;
+      });
+    });
+
+    // Future setAudio() async {
+    //   audioPlayer.setReleaseMode(ReleaseMode.LOOP)
+    // }
+  }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Color(0xFF39403E),
-    body: Padding(
-      padding: const EdgeInsets.all(20),
-      child: StreamBuilder(
-          // stream: _audioStateStream,
-      builder: (context, AsyncSnapshot snapshot) {
-      PlaybackState? state = snapshot.data as PlaybackState?;
-      // final queue = state?.queue;
-      MediaItem media = snapshot.data as MediaItem;
-      final mediaItem = snapshot.data?.mediaItem;
-      final playbackState = state;
-      final processingState = state?.processingState ?? AudioProcessingState.none;
-      final playing = state?.playing ?? false;
+  void dispose(){
+    audioPlayer.dispose();
+    super.dispose();
+  }
 
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: CachedNetworkImage(
-                imageUrl: image,
-                fit: BoxFit.cover,
-                height: 350,
-                width: double.infinity,
-            ),
-          ),
-          const SizedBox(height: 32),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        if (processingState == AudioProcessingState.none) ...[
-          _startAudioPlayerBtn(),
-        ] else ... [
-          positionIndicator(mediaItem, playbackState!),
-          CircleAvatar(
-            radius: 35,
-            child: IconButton(
-              icon: Icon(
-                playing ? Icons.pause : Icons.play_arrow,
-              ),
-              iconSize: 50,
-              onPressed: () async {
-                if(!playing){
-                  AudioService.play();
-                } else {
-                  AudioService.pause();
-                }
-              },
-            ),
-          ),
-          CircleAvatar(
-            radius: 35,
-            child: IconButton(
-              icon: const Icon(
-                  Icons.stop
-              ),
-              iconSize: 50,
-              onPressed: () async {
-                AudioService.stop();
-              },
-            ),
-          ),
-          ],
-        ],
-      );
-      }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFF39403E),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: StreamBuilder(
+            stream: AudioService.playbackStateStream,
+            builder: (context, snapshot) {
+              PlaybackState? state = snapshot.data as PlaybackState?;
+
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: CachedNetworkImage(
+                      imageUrl: image,
+                      fit: BoxFit.cover,
+                      height: 350,
+                      width: double.infinity,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  if (state?.processingState == AudioProcessingState.connecting) ...[
+                    const CircularProgressIndicator()
+                  ] else ...[
+                      Slider(
+                        min: 0,
+                        max: duration.inSeconds.toDouble(),
+                        value: position.inSeconds.toDouble(),
+                        onChanged: (value) async {
+                          final position = Duration(seconds: value.toInt());
+                          await audioPlayer.seek(position);
+
+                          await audioPlayer.resume();
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(position.toString()),
+                            Text((duration - position).toString()),
+                          ],
+                        ),
+                      ),
+                      CircleAvatar(
+                        radius: 35,
+                        child: IconButton(
+                          icon: Icon(
+                            isPlaying ? Icons.pause : Icons.play_arrow,
+                          ),
+                          iconSize: 50,
+                          onPressed: () async {
+                            if (isPlaying) {
+                              await audioPlayer.pause();
+                              AudioService.play();
+                            } else {
+                              await audioPlayer.play(url);
+                              AudioService.pause();
+                            }
+                          },
+                        ),
+                      ),
+                      CircleAvatar(
+                        radius: 35,
+                        child: IconButton(
+                          icon: const Icon(
+                              Icons.stop
+                          ),
+                          iconSize: 50,
+                          onPressed: () async {
+                            AudioService.stop();
+                          },
+                        ),
+                      ),
+                    ],
+                ],
+              );
+            }
+        ),
       ),
-    ),
-  );
-
-  _startAudioPlayerBtn() {
-    List<dynamic> list = [];
-    for (int i = 0; i < 2; i++) {
-      var m = queuee[i].toJson();
-      list.add(m);
-    }
-    var params = {"data": list};
-    return MaterialButton(
-      child: Text(_loading ? "Loading..." : 'Start Audio Player'),
-      onPressed: () async {
-        setState(() {
-          _loading = true;
-        });
-        await AudioService.start(
-          backgroundTaskEntrypoint: _audioPlayerTaskEntrypoint,
-          androidNotificationChannelName: 'Audio Player',
-          androidNotificationColor: 0xFF2196f3,
-          androidNotificationIcon: 'mipmap/ic_launcher',
-          params: params,
-        );
-        setState(() {
-          _loading = false;
-        });
-      },
-    );
-  }
-
-  Widget positionIndicator(MediaItem mediaItem, PlaybackState state) {
-    double? seekPos;
-    return StreamBuilder(
-      stream: Rx.combineLatest2<double, double, double>(
-          _dragPositionSubject.stream,
-          Stream.periodic(const Duration(milliseconds: 200)),
-              (dragPosition, _) => dragPosition),
-      builder: (context, snapshot) {
-         double position = state.currentPosition.inMilliseconds.toDouble();
-        double duration = mediaItem.duration.inMilliseconds.toDouble();
-        return Column(
-          children: [
-            if (duration != null)
-              Slider(
-                min: 0.0,
-                max: duration,
-                value: seekPos ?? max(0.0, min(position, duration)),
-                onChanged: (value) {
-                  _dragPositionSubject.add(value);
-                },
-                onChangeEnd: (value) {
-                  AudioService.seekTo(Duration(milliseconds: value.toInt()));
-                  // Due to a delay in platform channel communication, there is
-                  // a brief moment after releasing the Slider thumb before the
-                  // new position is broadcast from the platform side. This
-                  // hack is to hold onto seekPos until the next state update
-                  // comes through.
-                  // TODO: Improve this code.
-                  seekPos = value;
-                  _dragPositionSubject.add(null);
-                },
-              ),
-            Text("${state.currentPosition}"),
-          ],
-        );
-      },
     );
   }
 }
-
-Stream<AudioState> get _audioStateStream {
-  return Rx.combineLatest3<List<MediaItem>, MediaItem, PlaybackState,
-      AudioState>(
-    AudioService.queueStream,
-    AudioService.currentMediaItemStream,
-    AudioService.playbackStateStream,
-        (queue, mediaItem, playbackState) => AudioState(
-      queue,
-      mediaItem,
-      playbackState,
-    ),
-  );
-}
-void _audioPlayerTaskEntrypoint() async {
-  AudioServiceBackground.run(() => AudioPlayerTask());
-}
-
-
-
-
 
 // import 'dart:async';
 // import 'package:audioplayers/audioplayers.dart';
