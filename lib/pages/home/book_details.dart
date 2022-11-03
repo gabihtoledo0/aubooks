@@ -113,18 +113,19 @@ class DetailPageState extends State<DetailPage> {
                         return Column(
                           children: snapshot.data!.map((item)=>ListTile(
                             title: Text(item.title),
-                            leading: Icon(Icons.play_circle_filled),
+                            leading: const Icon(Icons.play_circle_filled),
                             onTap: () async {
                               // if(url == item.url) AudioService.play();
                               SharedPreferences prefs = await SharedPreferences.getInstance();
                               await prefs.setString("play_url", item.url);
-
                               await prefs.setString("book_id", item.bookId);
                               await prefs.setInt("track", snapshot.data!.indexOf(item));
+
+                              CustomAudioPlayer().onStop();
                               setState(() {
                                 toplay = true;
                               });
-                              // AudioService.stop();
+
                               start();
                               setState(() {
                                 url = item.url;
