@@ -218,33 +218,33 @@ class _RegisterUser extends State<RegisterUser> {
                   const SizedBox(
                     height: 28.0,
                   ),
-                  SizedBox(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          side: BorderSide(color: Color(0xFFF8BBD0))),
-                      child: const Text(
-                        "Assinar gratuitamente",
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      textColor: Colors.white,
-                      color: Color(0xFF9966DD),
-                      onPressed: () {
-                        Navigator.push(context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
-                          ),
-                        );
-
-                        // if (_formKey.currentState.validate()) {
-                        //   register();
-                        // }
-                      },
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 50.0,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   child: RaisedButton(
+                  //     shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(8.0),
+                  //         side: BorderSide(color: Color(0xFFF8BBD0))),
+                  //     child: const Text(
+                  //       "Assinar gratuitamente",
+                  //       style: TextStyle(
+                  //           fontSize: 18.0, fontWeight: FontWeight.bold),
+                  //     ),
+                  //     textColor: Colors.white,
+                  //     color: Color(0xFF9966DD),
+                  //     onPressed: () {
+                  //       Navigator.push(context,
+                  //         MaterialPageRoute(
+                  //           builder: (context) => LoginScreen(),
+                  //         ),
+                  //       );
+                  //
+                  //       // if (_formKey.currentState.validate()) {
+                  //       //   register();
+                  //       // }
+                  //     },
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -257,7 +257,7 @@ class _RegisterUser extends State<RegisterUser> {
 
 showAlertDialog(BuildContext context) {
   // configura o button
-  Widget okButton = FlatButton(
+  Widget okButton = TextButton(
     child: Text("OK"),
     onPressed: () {
       Navigator.of(context).pop();
@@ -283,7 +283,7 @@ showAlertDialog(BuildContext context) {
 
 showSucessDialog(BuildContext context) {
   // configura o button
-  Widget loginButton = FlatButton(
+  Widget loginButton = TextButton(
     child: Text("LOGIN"),
     onPressed: () {
       Navigator.push(
