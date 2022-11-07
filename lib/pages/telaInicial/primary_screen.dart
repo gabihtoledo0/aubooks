@@ -56,31 +56,31 @@ class _PrimaryScreen extends State<PrimaryScreen> {
                   const SizedBox(
                     height: 48.0,
                   ),
-                  // SizedBox(
-                  //   height: 50.0,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   child: OutlinedButton(
-                  //     shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(8.0),
-                  //         side: const BorderSide(color: Color(0xFF9966DD))),
-                  //     child: const Text(
-                  //       "Entrar",
-                  //       style: TextStyle(fontSize: 18.0,
-                  //         fontFamily: 'Sansation',
-                  //         fontWeight: FontWeight.w700,
-                  //       ),
-                  //     ),
-                  //     textColor: Colors.white,
-                  //     color: Color(0xFF9966DD),
-                  //     onPressed: () {
-                  //       Navigator.push(context,
-                  //         MaterialPageRoute(
-                  //             builder: (context) => LoginScreen()
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
+                   SizedBox(
+                     height: 50.0,
+                     width: MediaQuery.of(context).size.width,
+                     child: ElevatedButton(
+                       /*shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(8.0),
+                           side: const BorderSide(color: Color(0xFF9966DD))),*/
+                       child: const Text(
+                         "Entrar",
+                         style: TextStyle(fontSize: 18.0,
+                           fontFamily: 'Sansation',
+                           fontWeight: FontWeight.w700,
+                         ),
+                       ),
+                       /*textColor: Colors.white,
+                       color: Color(0xFF9966DD),*/
+                       onPressed: () {
+                         Navigator.push(context,
+                           MaterialPageRoute(
+                               builder: (context) => LoginScreen()
+                           ),
+                         );
+                       },
+                     ),
+                   ),
                 ]
             )
           )

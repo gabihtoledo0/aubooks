@@ -2,6 +2,8 @@ import 'package:aubooks/pages/home/homepage_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/login/login.dart';
+import 'package:flutter/material.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({Key? key}) : super(key: key);
@@ -12,13 +14,13 @@ class RegisterUser extends StatefulWidget {
 
 class _RegisterUser extends State<RegisterUser> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _surnameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _senhaController = TextEditingController();
-  final TextEditingController _confSenhaController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _dateOfBirthController = TextEditingController();
+  final controllerUsername = TextEditingController();
+  final controllerSurname = TextEditingController();
+  final controllerEmail = TextEditingController();
+  final controllerSenha = TextEditingController();
+  final controllerCsenha = TextEditingController();
+  final controllerPhone = TextEditingController();
+  final controllerNasc = TextEditingController();
   FocusNode focus = FocusNode();
 
   @override
@@ -47,7 +49,7 @@ class _RegisterUser extends State<RegisterUser> {
                 children: [
                   const SizedBox(height: 10),
                   TextFormField(
-                    controller: _nameController,
+                    controller: controllerUsername,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -70,7 +72,7 @@ class _RegisterUser extends State<RegisterUser> {
                     height: 16.0,
                   ),
                   TextFormField(
-                    controller: _surnameController,
+                    controller: controllerSurname,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -94,7 +96,7 @@ class _RegisterUser extends State<RegisterUser> {
                     height: 16.0,
                   ),
                   TextFormField(
-                    controller: _phoneController,
+                    controller: controllerPhone,
                     // inputFormatters: [maskFormatter],
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
@@ -119,7 +121,7 @@ class _RegisterUser extends State<RegisterUser> {
                     height: 16.0,
                   ),
                   TextFormField(
-                    controller: _dateOfBirthController,
+                    controller: controllerNasc,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -143,7 +145,7 @@ class _RegisterUser extends State<RegisterUser> {
                     height: 16.0,
                   ),
                   TextFormField(
-                    controller: _emailController,
+                    controller: controllerEmail,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -166,7 +168,7 @@ class _RegisterUser extends State<RegisterUser> {
                     height: 16.0,
                   ),
                   TextFormField(
-                    controller: _senhaController,
+                    controller: controllerSenha,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -190,7 +192,7 @@ class _RegisterUser extends State<RegisterUser> {
                     height: 16.0,
                   ),
                   TextFormField(
-                    controller: _confSenhaController,
+                    controller: controllerCsenha,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -218,33 +220,33 @@ class _RegisterUser extends State<RegisterUser> {
                   const SizedBox(
                     height: 28.0,
                   ),
-                  // SizedBox(
-                  //   height: 50.0,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   child: RaisedButton(
-                  //     shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(8.0),
-                  //         side: BorderSide(color: Color(0xFFF8BBD0))),
-                  //     child: const Text(
-                  //       "Assinar gratuitamente",
-                  //       style: TextStyle(
-                  //           fontSize: 18.0, fontWeight: FontWeight.bold),
-                  //     ),
-                  //     textColor: Colors.white,
-                  //     color: Color(0xFF9966DD),
-                  //     onPressed: () {
-                  //       Navigator.push(context,
-                  //         MaterialPageRoute(
-                  //           builder: (context) => LoginScreen(),
-                  //         ),
-                  //       );
-                  //
-                  //       // if (_formKey.currentState.validate()) {
-                  //       //   register();
-                  //       // }
-                  //     },
-                  //   ),
-                  // ),
+                   SizedBox(
+                     height: 50.0,
+                     width: MediaQuery.of(context).size.width,
+                     child: ElevatedButton(
+                       /*shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(8.0),
+                           side: BorderSide(color: Color(0xFFF8BBD0))),*/
+                       child: const Text(
+                         "Assinar gratuitamente",
+                         style: TextStyle(
+                             fontSize: 18.0, fontWeight: FontWeight.bold),
+                       ),
+                       /*textColor: Colors.white,
+                       color: Color(0xFF9966DD),*/
+                       onPressed: () {
+                         Navigator.push(context,
+                           MaterialPageRoute(
+                             builder: (context) => LoginScreen(),
+                           ),
+                         );
+
+                         // if (_formKey.currentState.validate()) {
+                         //   register();
+                         // }
+                       },
+                     ),
+                   ),
                 ],
               ),
             ),
@@ -305,5 +307,18 @@ showSucessDialog(BuildContext context) {
     builder: (BuildContext context) {
       return alerta;
     },
-  );
-}
+  );}
+/*
+  void doUserRegistration() async {
+    final username = controllerUsername.text.trim();
+    final email = controllerEmail.text.trim();
+    final password = controllerSenha.text.trim();
+
+    final user = ParseUser.createUser(username, password, email);
+
+    var response = await user.signUp();}
+*/
+
+
+
+
