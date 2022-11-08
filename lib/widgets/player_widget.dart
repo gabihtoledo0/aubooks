@@ -3,7 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:audio_service/audio_service.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:aubooks/resources/player_res.dart';
 
 class PlayerWidget extends StatefulWidget {
   final String url;
@@ -65,13 +65,17 @@ class _PlayerState extends State<PlayerWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF39403E),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF9966DD),
+      ),
+      backgroundColor: const Color(0xFF39403E),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: StreamBuilder(
             stream: AudioService.playbackStateStream,
             builder: (context, snapshot) {
               PlaybackState? state = snapshot.data as PlaybackState?;
+              print(state?.processingState == AudioProcessingState.connecting);
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -90,20 +94,24 @@ class _PlayerState extends State<PlayerWidget> {
                     title,
                     style: const TextStyle(
                         fontSize: 24,
+                        color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.bold
                     ),
                   ),
                   if (state?.processingState == AudioProcessingState.connecting) ...[
-                    const CircularProgressIndicator()
+                    const SizedBox(height: 32),
+                    const CircularProgressIndicator(color: Color(0xFFFFFFFF))
                   ] else ...[
-                      Slider(
+                    const SizedBox(height: 20),
+                    Slider(
                         min: 0,
                         max: duration.inSeconds.toDouble(),
                         value: position.inSeconds.toDouble(),
+                        activeColor: const Color(0xFF9966DD),
+                        inactiveColor: const Color(0x8BFFFFFF),
                         onChanged: (value) async {
                           final position = Duration(seconds: value.toInt());
                           await audioPlayer.seek(position);
-
                           await audioPlayer.resume();
                         },
                       ),
@@ -117,35 +125,48 @@ class _PlayerState extends State<PlayerWidget> {
                           ],
                         ),
                       ),
-                      CircleAvatar(
-                        radius: 35,
-                        child: IconButton(
-                          icon: Icon(
-                            isPlaying ? Icons.pause : Icons.play_arrow,
+                    const Padding(padding: EdgeInsets.only(bottom: 20)),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            radius: 35,
+                            backgroundColor: const Color(0xFF9966DD),
+                            child: IconButton(
+                              icon: Icon(
+                                isPlaying ? Icons.pause : Icons.play_arrow,
+                                color: Color(0xFFFFFFFF),
+                              ),
+                              iconSize: 50,
+                              onPressed: () async {
+                                if (isPlaying) {
+                                  await audioPlayer.pause();
+                                  AudioService.pause();
+                                } else {
+                                  start();
+                                  await audioPlayer.play(url);
+                                  AudioService.play();
+                                }
+                              },
+                            ),
                           ),
-                          iconSize: 50,
-                          onPressed: () async {
-                            if (isPlaying) {
-                              await audioPlayer.pause();
-                              AudioService.play();
-                            } else {
-                              await audioPlayer.play(url);
-                              AudioService.pause();
-                            }
-                          },
-                        ),
-                      ),
-                      CircleAvatar(
-                        radius: 35,
-                        child: IconButton(
-                          icon: const Icon(
-                              Icons.stop
+                          const Padding(padding: EdgeInsets.only(right: 16)),
+                          CircleAvatar(
+                            radius: 35,
+                            backgroundColor: const Color(0xFF9966DD),
+                            child: IconButton(
+                              icon: const Icon(
+                                  Icons.stop,
+                                color: Color(0xFFFFFFFF),
+                              ),
+                              iconSize: 50,
+                              onPressed: () async {
+                                await audioPlayer.stop();
+                                AudioService.stop();
+                              },
+                            ),
                           ),
-                          iconSize: 50,
-                          onPressed: () async {
-                            AudioService.stop();
-                          },
-                        ),
+                        ],
                       ),
                     ],
                 ],
