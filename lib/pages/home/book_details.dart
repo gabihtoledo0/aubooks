@@ -257,7 +257,6 @@ class DetailPageState extends State<DetailPage> {
                           builder: (context, snapshot) {
                             PlaybackState? state =
                                 snapshot.data as PlaybackState?;
-
                             return Expanded(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
