@@ -23,7 +23,7 @@ class Validator {
     RegExp regExp = new RegExp(pattern);
     if (value!.isEmpty) {
       return "Informe o Email";
-    } else if (!regExp.hasMatch(value!)) {
+    } else if (!regExp.hasMatch(value)) {
       return "Email inválido";
     }
   }
@@ -33,7 +33,7 @@ class Validator {
     RegExp regExp = new RegExp(pattern);
     if (value!.isEmpty) {
       return "O campo não pode ficar vazio";
-    } else if (!regExp.hasMatch(value!)) {
+    } else if (!regExp.hasMatch(value)) {
       return "Tente digitar apensas números";
     }
   }
@@ -43,7 +43,7 @@ class Validator {
     RegExp regExp = new RegExp(pattern);
     if (value!.isEmpty) {
       return "O campo não pode ficar vazio";
-    } else if (!regExp.hasMatch(value!)) {
+    } else if (!regExp.hasMatch(value)) {
       return "Data inválida";
     }
   }
@@ -54,7 +54,7 @@ class Validator {
     RegExp regExp = new RegExp(pattern);
     if (value!.isEmpty) {
       return "Informe a senha de no mínimo 8 caracteres";
-    } else if (!regExp.hasMatch(value!)) {
+    } else if (!regExp.hasMatch(value)) {
       return "A senha deve conter um caractere especial, uma letra maiúscula, uma letra minúscula e um número.";
     } else if (value.length < 8) {
       return "A senha deve no mínimo 8 caracteres.";
