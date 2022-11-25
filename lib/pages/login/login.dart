@@ -1,9 +1,11 @@
+import 'package:aubooks/pages/home/homepage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/register/registerUser.dart';
 import 'package:aubooks/pages/forget_my_password/forget_my_password.dart';
 import 'package:aubooks/pages/home/homepage_navigation.dart';
 import 'package:aubooks/pages/telaInicial/primary_screen.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,9 +15,75 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController controllerSenha = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isLoggedIn = false;
+
+
+  void doUserLogin() async {
+    final email = controllerEmail.text.trim();
+    final senha = controllerSenha.text.trim();
+
+    final user = ParseUser(email, senha, null);
+
+
+
+    var response = await user.login();
+    if (response.success) {
+      showSuccess("Logou");
+      setState(() {
+        isLoggedIn = true;
+
+        Navigator.push(context,
+          MaterialPageRoute(
+            builder: (context) => HomePageScreen(),
+          ),
+        );
+      });
+    } else {
+      showError(response.error!.message);
+    }
+  }
+  void showSuccess(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: Text(message),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showError(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(errorMessage),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
 
@@ -54,7 +122,7 @@ class _LoginScreen extends State<LoginScreen> {
                     ),
                     TextFormField(
                       cursorColor: const Color(0xFF39403E),
-                      controller: _emailController,
+                      controller: controllerEmail,
                       decoration: const InputDecoration(
                         labelStyle: TextStyle(
                           fontSize: 18,
@@ -82,7 +150,7 @@ class _LoginScreen extends State<LoginScreen> {
                     ),
                     TextFormField(
                       cursorColor: const Color(0xFF39403E),
-                      controller: _senhaController,
+                      controller: controllerSenha,
                       obscureText: true,
                       decoration: const InputDecoration(
                         labelStyle: TextStyle(
@@ -164,34 +232,29 @@ class _LoginScreen extends State<LoginScreen> {
                     const SizedBox(
                       height: 14.0,
                     ),
-                    // SizedBox(
-                    //   height: 50.0,
-                    //   width: MediaQuery.of(context).size.width,
-                    //   child: RaisedButton(
-                    //     shape: RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(8.0),
-                    //         side: const BorderSide(color: Color(0xFF9966DD))),
-                    //     child: const Text(
-                    //       "Entrar",
-                    //       style: TextStyle(fontSize: 18.0,
-                    //         fontFamily: 'Sansation',
-                    //         fontWeight: FontWeight.w700,
-                    //       ),
-                    //     ),
-                    //     textColor: Colors.white,
-                    //     color: Color(0xFF9966DD),
-                    //     onPressed: () {
-                    //       // if (_formKey.currentState.validate()) {
-                    //       //   _auth();
-                    //       // }
-                    //       Navigator.push(context,
-                    //         MaterialPageRoute(
-                    //             builder: (context) => HomePageNavigation()
-                    //         ),
-                    //       );
-                    //     },
-                    //   ),
-                    // ),
+                     SizedBox(
+                       height: 50.0,
+                       width: MediaQuery.of(context).size.width,
+                       child: ElevatedButton(
+                         // shape: RoundedRectangleBorder(
+                         //     borderRadius: BorderRadius.circular(8.0),
+                         //     side: const BorderSide(color: Color(0xFF9966DD))),
+                         child: const Text(
+                           "Entrar",
+                           style: TextStyle(fontSize: 18.0,
+                             fontFamily: 'Sansation',
+                             fontWeight: FontWeight.w700,
+                           ),
+                         ),
+                         // textColor: Colors.white,
+                         // color: Color(0xFF9966DD),
+                           onPressed: () { doUserLogin ();
+}
+
+
+
+                       ),
+                     ),
                     const SizedBox(
                       height: 32.0,
                     ),
@@ -228,6 +291,8 @@ class _LoginScreen extends State<LoginScreen> {
           ],
         ),
       ),
+
     );
+
   }
 }

@@ -23,7 +23,19 @@ class _RegisterUser extends State<RegisterUser> {
   final controllerNasc = TextEditingController();
   FocusNode focus = FocusNode();
 
-  @override
+  void doUserRegistration() async {
+    final username = controllerUsername.text.trim();
+    final surname = controllerSurname.text.trim();
+    final email = controllerEmail.text.trim();
+    final senha = controllerSenha.text.trim();
+    final csenha = controllerCsenha.text.trim();
+    final phone = controllerPhone.text.trim();
+    final nasc = controllerNasc.text.trim();
+
+    final user = ParseUser.createUser(username, phone, email);
+
+    var response = await user.signUp();}
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -231,20 +243,16 @@ class _RegisterUser extends State<RegisterUser> {
                          "Assinar gratuitamente",
                          style: TextStyle(
                              fontSize: 18.0, fontWeight: FontWeight.bold),
-                       ),
-                       /*textColor: Colors.white,
-                       color: Color(0xFF9966DD),*/
-                       onPressed: () {
-                         Navigator.push(context,
-                           MaterialPageRoute(
-                             builder: (context) => LoginScreen(),
-                           ),
-                         );
 
-                         // if (_formKey.currentState.validate()) {
-                         //   register();
-                         // }
-                       },
+                       ), onPressed: () { doUserRegistration ();
+
+    Navigator.push(context,
+    MaterialPageRoute(
+    builder: (context) => LoginScreen(),
+    ),
+    );}
+
+
                      ),
                    ),
                 ],
@@ -308,16 +316,7 @@ showSucessDialog(BuildContext context) {
       return alerta;
     },
   );}
-/*
-  void doUserRegistration() async {
-    final username = controllerUsername.text.trim();
-    final email = controllerEmail.text.trim();
-    final password = controllerSenha.text.trim();
 
-    final user = ParseUser.createUser(username, password, email);
-
-    var response = await user.signUp();}
-*/
 
 
 
