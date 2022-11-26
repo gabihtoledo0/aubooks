@@ -21,30 +21,7 @@ class _LoginScreen extends State<LoginScreen> {
   bool isLoggedIn = false;
 
 
-  void doUserLogin() async {
-    final email = controllerEmail.text.trim();
-    final senha = controllerSenha.text.trim();
-
-    final user = ParseUser(email, senha, null);
-
-
-
-    var response = await user.login();
-    if (response.success) {
-      showSuccess("Logou");
-      setState(() {
-        isLoggedIn = true;
-
-        Navigator.push(context,
-          MaterialPageRoute(
-            builder: (context) => HomePageScreen(),
-          ),
-        );
-      });
-    } else {
-      showError(response.error!.message);
-    }
-  }
+  //void doUserLogin()
   void showSuccess(String message) {
     showDialog(
       context: context,
@@ -248,8 +225,31 @@ class _LoginScreen extends State<LoginScreen> {
                          ),
                          // textColor: Colors.white,
                          // color: Color(0xFF9966DD),
-                           onPressed: () { doUserLogin ();
-}
+                           onPressed: ()
+                           async {
+    final email = controllerEmail.text.trim();
+    final senha = controllerSenha.text.trim();
+
+    final user = ParseUser(email, senha, null);
+
+
+
+    var response = await user.login();
+    if (response.success) {
+    showSuccess("Logou");
+    setState(() {
+    isLoggedIn = true;
+
+    Navigator.push(context,
+    MaterialPageRoute(
+    builder: (context) => HomePageScreen(),
+    ),
+    );
+    });
+    } else {
+    showError(response.error!.message);
+    }
+    }
 
 
 
