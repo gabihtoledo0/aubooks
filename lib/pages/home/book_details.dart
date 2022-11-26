@@ -91,10 +91,6 @@ class DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _colorScheme = Theme.of(context).colorScheme;
-    final double _panelMinSize = 70.0;
-    final double _panelMaxSize = MediaQuery.of(context).size.height / 2;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.book.title),
@@ -159,6 +155,23 @@ class DetailPageState extends State<DetailPage> {
                 ],
               ),
               ),
+              const SizedBox(height: 32),
+              const Text("Descrição:",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontFamily: 'Sansation',
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFFFFFFFF),
+                  )),
+              const SizedBox(height: 16),
+              Text(
+                  widget.book.description,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                    fontFamily: 'Sansation',
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFFFFFFFF),
+                  )),
               const SizedBox(height: 32),
               const Text("Capítulos:",
                   style: TextStyle(
@@ -243,153 +256,155 @@ class DetailPageState extends State<DetailPage> {
               builder: (height, percentage) {
                 if (percentage > 0.2) {
                   return Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Color(0xf9966dd0), Color(0xf910091b)],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xf9966dd0), Color(0xf910091b)],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: StreamBuilder(
-                          stream: AudioService.playbackStateStream,
-                          builder: (context, snapshot) {
-                            PlaybackState? state =
-                                snapshot.data as PlaybackState?;
-                            return Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: CachedNetworkImage(
-                                      imageUrl: widget.book.image,
-                                      fit: BoxFit.contain,
-                                      height: 150,
-                                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: StreamBuilder(
+                            stream: AudioService.playbackStateStream,
+                            builder: (context, snapshot) {
+                              PlaybackState? state =
+                              snapshot.data as PlaybackState?;
+                              return Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: CachedNetworkImage(
+                                        imageUrl: widget.book.image,
+                                        fit: BoxFit.contain,
+                                        height: 150,
+                                        width: double.infinity,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 18),
-                                  Text(
-                                    title!,
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        color: Color(0xFFFFFFFF),
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  if (state?.processingState ==
-                                      AudioProcessingState.connecting) ...[
-                                    const CircularProgressIndicator(
-                                        color: Color(0xFF000000))
-                                  ] else ...[
-                                    Slider(
-                                      min: 0,
-                                      max: duration.inSeconds.toDouble(),
-                                      value: position.inSeconds.toDouble(),
-                                      activeColor: const Color(0xFF9966DD),
-                                      inactiveColor: const Color(0x8BFFFFFF),
-                                      onChanged: (value) async {
-                                        final position = Duration(seconds: value.toInt());
-                                        await audioPlayer.seek(position);
-                                        await audioPlayer.resume();
-                                      },
+                                    const SizedBox(height: 18),
+                                    Text(
+                                      title!,
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFFFFFFFF),
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16),
-                                      child: Expanded(
+                                    const SizedBox(height: 6),
+                                    if (state?.processingState ==
+                                        AudioProcessingState.connecting) ...[
+                                      const CircularProgressIndicator(
+                                          color: Color(0xFF000000))
+                                    ] else ...[
+                                      Slider(
+                                        min: 0,
+                                        max: duration.inSeconds.toDouble(),
+                                        value: position.inSeconds.toDouble(),
+                                        activeColor: const Color(0xFF9966DD),
+                                        inactiveColor: const Color(0x8BFFFFFF),
+                                        onChanged: (value) async {
+                                          final position = Duration(seconds: value.toInt());
+                                          await audioPlayer.seek(position);
+                                          await audioPlayer.resume();
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        child: Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                position.toString().split(".")[0],
+                                                style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'Sansation',
+                                                    color: Color(0xFFFFFFFF)),
+                                              ),
+                                              Text(
+                                                (duration - position).toString().split(".")[0],
+                                                style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'Sansation',
+                                                    color: Color(0xFFFFFFFF)),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const Padding(
+                                          padding: EdgeInsets.only(bottom: 20)),
+                                      Expanded(
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              position.toString().split(".")[0],
-                                              style: const TextStyle(
-                                                  fontSize: 14,
-                                                  fontFamily: 'Sansation',
-                                                  color: Color(0xFFFFFFFF)),
+                                            CircleAvatar(
+                                              radius: 20,
+                                              backgroundColor:
+                                              const Color(0xFF9966DD),
+                                              child: IconButton(
+                                                icon: Icon(
+                                                  playStandBy == true
+                                                      ? Icons.pause
+                                                      : Icons.play_arrow,
+                                                  color: Color(0xFFFFFFFF),
+                                                ),
+                                                iconSize: 20,
+                                                onPressed: () async {
+                                                  if (playStandBy == true) {
+                                                    // setState(() {
+                                                    //   playStandBy = false;
+                                                    // });
+                                                    await audioPlayer.pause();
+                                                    AudioService.pause();
+                                                  } else {
+                                                    // setState(() {
+                                                    //   playStandBy = true;
+                                                    // });
+                                                    await audioPlayer.play(url);
+                                                    AudioService.play();
+                                                  }
+                                                },
+                                              ),
                                             ),
-                                            Text(
-                                              (duration - position).toString().split(".")[0],
-                                              style: const TextStyle(
-                                                  fontSize: 14,
-                                                  fontFamily: 'Sansation',
-                                                  color: Color(0xFFFFFFFF)),
+                                            const Padding(
+                                                padding:
+                                                EdgeInsets.only(right: 16)),
+                                            CircleAvatar(
+                                              radius: 20,
+                                              backgroundColor:
+                                              const Color(0xFF9966DD),
+                                              child: IconButton(
+                                                icon: const Icon(
+                                                  Icons.stop,
+                                                  color: Color(0xFFFFFFFF),
+                                                ),
+                                                iconSize: 20,
+                                                onPressed: () async {
+                                                  setState(() {
+                                                    toplay = false;
+                                                  });
+                                                  await audioPlayer.stop();
+                                                  AudioService.stop();
+                                                },
+                                              ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    const Padding(
-                                        padding: EdgeInsets.only(bottom: 20)),
-                                    Expanded(
-                                      child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 20,
-                                          backgroundColor:
-                                          const Color(0xFF9966DD),
-                                          child: IconButton(
-                                            icon: Icon(
-                                              playStandBy == true
-                                                  ? Icons.pause
-                                                  : Icons.play_arrow,
-                                              color: Color(0xFFFFFFFF),
-                                            ),
-                                            iconSize: 20,
-                                            onPressed: () async {
-                                              if (playStandBy == true) {
-                                                // setState(() {
-                                                //   playStandBy = false;
-                                                // });
-                                                await audioPlayer.pause();
-                                                AudioService.pause();
-                                              } else {
-                                                // setState(() {
-                                                //   playStandBy = true;
-                                                // });
-                                                await audioPlayer.play(url);
-                                                AudioService.play();
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                        const Padding(
-                                            padding:
-                                            EdgeInsets.only(right: 16)),
-                                        CircleAvatar(
-                                          radius: 20,
-                                          backgroundColor:
-                                          const Color(0xFF9966DD),
-                                          child: IconButton(
-                                            icon: const Icon(
-                                              Icons.stop,
-                                              color: Color(0xFFFFFFFF),
-                                            ),
-                                            iconSize: 20,
-                                            onPressed: () async {
-                                              setState(() {
-                                                toplay = false;
-                                              });
-                                              await audioPlayer.stop();
-                                              AudioService.stop();
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    ),
+                                    ],
                                   ],
-                                ],
-                              ),
-                            );
-                          }),
-                    ),
-                  );
+                                ),
+                              );
+                            }),
+                      ),
+                    );
+
+
                 } else {
                   return Container(
                       decoration: BoxDecoration(

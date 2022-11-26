@@ -76,8 +76,4 @@ class _HomePageScreen extends State<HomePageScreen> {
           }
     );
   }
-
-  void _openDetail(BuildContext context, Book book) {
-
-  }
 }
