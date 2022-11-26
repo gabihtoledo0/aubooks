@@ -3,6 +3,8 @@ import 'package:aubooks/components/box_audios.dart';
 import 'package:aubooks/components/header.dart';
 import 'package:aubooks/resources/notifiers/audio_books_notifier.dart';
 import 'package:provider/provider.dart';
+import 'package:aubooks/resources/models/models.dart';
+import 'package:aubooks/pages/home/book_details.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -62,7 +64,9 @@ class _HomePageScreen extends State<HomePageScreen> {
                     delegate: SliverChildBuilderDelegate(
                           (context, index) =>
                           BookGridItem(
-                              book: notifier.books[index], onTap: () => {}),
+                              book: notifier.books[index], onTap: () => Navigator.push(context, MaterialPageRoute(
+            builder: (_) => DetailPage(notifier.books[index])
+            ))),
                       childCount: notifier.books.length,
                     ),
                   ),

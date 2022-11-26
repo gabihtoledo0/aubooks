@@ -10,7 +10,6 @@ class AudioFile{
   final int track;
   final int size;
 
-
   AudioFile.fromJson(Map json):
         bookId=json["book_id"],
         title=json["title"],
@@ -32,6 +31,7 @@ class AudioFile{
   static List<AudioFile> fromJsonArray(List json) {
     List<AudioFile> audiofiles = <AudioFile>[];
     json.forEach((audiofile)=>audiofiles.add(AudioFile.fromJson(audiofile)));
+    print(json);
     return audiofiles;
   }
   static List<AudioFile> fromDBArray(List json) {
@@ -57,6 +57,7 @@ class AudioFile{
   }
 
   static String toJsonArray(List<AudioFile> audiofiles){
+    print(json.encode(audiofiles.map((audiofile)=>audiofile.toMap()).toList()));
     return json.encode(audiofiles.map((audiofile)=>audiofile.toMap()).toList());
   }
 

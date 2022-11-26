@@ -1,12 +1,13 @@
-import 'package:aubooks/pages/home/homepage_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/login/login.dart';
-import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import './validator.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+
 
 class RegisterUser extends StatefulWidget {
-  const RegisterUser({Key? key}) : super(key: key);
+  const RegisterUser({Key? key, required}) : super(key: key);
 
   @override
   _RegisterUser createState() => _RegisterUser();
@@ -22,6 +23,13 @@ class _RegisterUser extends State<RegisterUser> {
   final controllerPhone = TextEditingController();
   final controllerNasc = TextEditingController();
   FocusNode focus = FocusNode();
+  Validator valida = Validator();
+
+  final maskFormatter = MaskTextInputFormatter(
+      mask: '(##)#####-####', filter: {"#": RegExp(r'[0-9]')});
+
+  final maskFormatterDate = MaskTextInputFormatter(
+      mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
 
   void doUserRegistration() async {
     final username = controllerUsername.text.trim();
@@ -34,8 +42,10 @@ class _RegisterUser extends State<RegisterUser> {
 
     final user = ParseUser.createUser(username, phone, email);
 
-    var response = await user.signUp();}
-
+    var response = await user.signUp();
+    }
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -62,6 +72,7 @@ class _RegisterUser extends State<RegisterUser> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: controllerUsername,
+                    validator: valida.validarNome,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -85,6 +96,8 @@ class _RegisterUser extends State<RegisterUser> {
                   ),
                   TextFormField(
                     controller: controllerSurname,
+                    validator:
+                      valida.validarNome,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -109,7 +122,9 @@ class _RegisterUser extends State<RegisterUser> {
                   ),
                   TextFormField(
                     controller: controllerPhone,
-                    // inputFormatters: [maskFormatter],
+                    validator:
+                      valida.validarCelular,
+                    inputFormatters: [maskFormatter],
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -134,6 +149,12 @@ class _RegisterUser extends State<RegisterUser> {
                   ),
                   TextFormField(
                     controller: controllerNasc,
+                    inputFormatters: [maskFormatterDate],
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Informe a data de nascimento";
+                      }
+                    },
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -158,6 +179,8 @@ class _RegisterUser extends State<RegisterUser> {
                   ),
                   TextFormField(
                     controller: controllerEmail,
+                    validator:
+                      valida.validarEmail,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -181,6 +204,8 @@ class _RegisterUser extends State<RegisterUser> {
                   ),
                   TextFormField(
                     controller: controllerSenha,
+                    validator:
+                      valida.validarSenha,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -222,12 +247,13 @@ class _RegisterUser extends State<RegisterUser> {
                     ),
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
-                    // validator: (_confSenhaController) {
-                    //   final senha = _senhaController.text;
-                    //   if (_confSenhaController.isEmpty ||
-                    //       _confSenhaController != senha)
-                    //     return "As senhas não conferem";
-                    // },
+                    validator: (controllerCsenha) {
+                      final senha = controllerSenha.text;
+                      if (_confSenhaController!.isEmpty ||
+                          _confSenhaController != senha)
+                        return "As senhas não conferem";
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 28.0,
@@ -263,6 +289,27 @@ class _RegisterUser extends State<RegisterUser> {
       ),
     );
   }
+
+  // void register() async {
+  //   final String name = _nameController.text;
+  //   final String surname = _surnameController.text;
+  //   final String email = _emailController.text;
+  //   final String senha = _senhaController.text;
+  //   final String phone = _phoneController.text;
+  //   final String date = _dateOfBirthController.text;
+
+  //   showSucessDialog(context);
+
+  //   // int inter = await interDao.insert(c);
+  //   //
+  //   // if (inter != null) {
+  //   //   print("realizado cadastro");
+  //   //   showSucessDialog(context);
+  //   // } else {
+  //   //   showAlertDialog(context);
+  //   //   print("usuário já cadastrado");
+  //   // }
+  // }
 }
 
 showAlertDialog(BuildContext context) {
