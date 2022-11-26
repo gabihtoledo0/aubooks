@@ -282,6 +282,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  mime_type:
+    dependency: transitive
+    description:
+      name: mime_type
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   miniplayer:
     dependency: "direct main"
     description:
@@ -560,13 +567,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  we_slide:
-    dependency: "direct main"
-    description:
-      name: we_slide
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.0"
   win32:
     dependency: transitive
     description:
