@@ -31,19 +31,7 @@ class _RegisterUser extends State<RegisterUser> {
   final maskFormatterDate = MaskTextInputFormatter(
       mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
 
-  void doUserRegistration() async {
-    final username = controllerUsername.text.trim();
-    final surname = controllerSurname.text.trim();
-    final email = controllerEmail.text.trim();
-    final senha = controllerSenha.text.trim();
-    final csenha = controllerCsenha.text.trim();
-    final phone = controllerPhone.text.trim();
-    final nasc = controllerNasc.text.trim();
 
-    final user = ParseUser.createUser(username, phone, email);
-
-    var response = await user.signUp();
-    }
   
   @override
   Widget build(BuildContext context) {
@@ -270,16 +258,38 @@ class _RegisterUser extends State<RegisterUser> {
                          style: TextStyle(
                              fontSize: 18.0, fontWeight: FontWeight.bold),
 
-                       ), onPressed: () { doUserRegistration ();
+                       ), onPressed: ()
+                        async {
+                         // Add Profile objects and create table
+                         final username = controllerUsername.text.trim();
+                         final email = controllerEmail.text.trim();
+                         final senha = controllerSenha.text.trim();
+                         final csenha = controllerCsenha.text.trim();
+                         final surname = controllerSurname.text.trim();
+                         final phone = controllerPhone.text.trim();
+                         final nasc = controllerNasc.text.trim();
 
-    Navigator.push(context,
-    MaterialPageRoute(
-    builder: (context) => LoginScreen(),
-    ),
-    );}
+                         var profile = ParseObject('Profile');
+                         profile.set('Nome', username);
+                         profile.set('email', email);
+                         profile.set('Sobrenome', surname);
+                         profile.set('Nascimento', nasc);
+                         profile.set('Telefone', phone);
 
+                         final user = ParseUser.createUser(username, senha, email);
 
-                     ),
+                         var response = await user.signUp();
+
+                         await profile.save();
+                         ;
+
+                         Navigator.push(context,
+                           MaterialPageRoute(
+                             builder: (context) => LoginScreen(),
+                           ),
+                         );
+                       }
+  ),
                    ),
                 ],
               ),

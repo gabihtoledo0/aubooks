@@ -37,7 +37,7 @@ class PlayerService extends StatelessWidget {
     );
   }
 
-  RaisedButton audioPlayerButton() => RaisedButton(
+  ElevatedButton audioPlayerButton() => ElevatedButton(
     child: Text("Play"),
     onPressed: () {
       start();

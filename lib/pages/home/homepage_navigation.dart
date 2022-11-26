@@ -134,7 +134,7 @@ class _HomePageNavigation extends State<HomePageNavigation> {
 
 showExcluirContaDialog(BuildContext context) {
   // configura o button
-  Widget loginButton = FlatButton(
+  Widget loginButton = TextButton(
     child: Text("Sim"),
     onPressed: () {
       Navigator.push(
@@ -144,7 +144,7 @@ showExcluirContaDialog(BuildContext context) {
     },
   );
 
-  Widget no = FlatButton(
+  Widget no = TextButton(
     child: Text("Não"),
     onPressed: () {
       Navigator.of(context).pop();
