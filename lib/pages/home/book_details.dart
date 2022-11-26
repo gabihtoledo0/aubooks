@@ -5,7 +5,6 @@ import 'package:aubooks/resources/repository.dart';
 import 'package:miniplayer/miniplayer.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:aubooks/widgets/player_widget.dart';
-import 'package:we_slide/we_slide.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';

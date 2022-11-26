@@ -247,7 +247,7 @@ class _RegisterUser extends State<RegisterUser> {
                     ),
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
-                    validator: (controllerCsenha) {
+                    validator: (_confSenhaController) {
                       final senha = controllerSenha.text;
                       if (_confSenhaController!.isEmpty ||
                           _confSenhaController != senha)
