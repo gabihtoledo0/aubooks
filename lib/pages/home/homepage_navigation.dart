@@ -7,6 +7,7 @@ import 'package:aubooks/resources/notifiers/audio_books_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../login/login.dart';
+import '../register/AlterUser.dart';
 
 class HomePageNavigation extends StatefulWidget {
   const HomePageNavigation({Key? key}) : super(key: key);
@@ -36,7 +37,10 @@ class _HomePageNavigation extends State<HomePageNavigation> {
                   color: Color(0xFF9966DD)),
             ),
             onPressed: () {
-              debugPrint('Received click');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AlterUser ()),
+              );
             },
             style: OutlinedButton.styleFrom(
               side:
