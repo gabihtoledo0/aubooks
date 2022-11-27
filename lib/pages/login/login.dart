@@ -6,6 +6,8 @@ import 'package:aubooks/pages/home/homepage_navigation.dart';
 import 'package:aubooks/pages/telaInicial/primary_screen.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
+
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -13,13 +15,16 @@ class LoginScreen extends StatefulWidget {
   _LoginScreen createState() => _LoginScreen();
 }
 
+
+
 class _LoginScreen extends State<LoginScreen> {
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerSenha = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool isLoggedIn = false;
 
-  //void doUserLogin()
+
+
   void showSuccess(String message) {
     showDialog(
       context: context,
@@ -39,6 +44,8 @@ class _LoginScreen extends State<LoginScreen> {
       },
     );
   }
+
+
 
   void showError(String errorMessage) {
     showDialog(
@@ -152,13 +159,14 @@ class _LoginScreen extends State<LoginScreen> {
                             color: Color(0xFF39403E),
                             decoration: TextDecoration.underline,
                           )),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgetMyPassword()),
-                        );
-                      },
+                       onPressed: () async { final ParseUser user = ParseUser(null, null, controllerEmail.text.trim());
+                       final ParseResponse parseResponse = await user.requestPasswordReset();
+                       if (parseResponse.success) {
+                         showSuccess("Um e-mail para troca de senha foi enviado");
+
+                       } else {
+                        showError("Algo deu errado, tente novamente");
+                       }},
                     ),
                   ),
                   const SizedBox(
