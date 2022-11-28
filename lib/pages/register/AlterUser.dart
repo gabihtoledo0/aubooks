@@ -1,3 +1,4 @@
+import 'package:aubooks/pages/home/homepage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/login/login.dart';
@@ -58,9 +59,11 @@ class _AlterUser extends State<AlterUser> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 10),
+
                   TextFormField(
                     controller: controllerUsername,
-                    validator: valida.validarNome,
+                    validator:
+                    valida.validarNome,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -68,13 +71,14 @@ class _AlterUser extends State<AlterUser> {
                         fontWeight: FontWeight.w300,
                         color: Color(0xFF39403E),
                       ),
-                      labelText: "Nome",
-                      border: OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xFF9966DD),
                           )),
-                      prefixIcon: Icon(Icons.person, color: Color(0xFF9966DD)),
+                      labelText: "Nome",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.supervisor_account,
+                          color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.name,
                     // validator: valida.validarNome,
@@ -254,12 +258,12 @@ class _AlterUser extends State<AlterUser> {
                            borderRadius: BorderRadius.circular(8.0),
                            side: BorderSide(color: Color(0xFFF8BBD0))),*/
                         child: const Text(
-                          "Assinar gratuitamente",
+                          "Alterar Dados",
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold),
 
                         ), onPressed: ()
-                    async {
+                    async {/*
                       // Add Profile objects and create table
                       final username = controllerUsername.text.trim();
                       final email = controllerEmail.text.trim();
@@ -269,23 +273,21 @@ class _AlterUser extends State<AlterUser> {
                       final phone = controllerPhone.text.trim();
                       final nasc = controllerNasc.text.trim();
 
-                      var profile = ParseObject('Profile');
-                      profile.set('Nome', username);
-                      profile.set('email', email);
-                      profile.set('Sobrenome', surname);
-                      profile.set('Nascimento', nasc);
-                      profile.set('Telefone', phone);
+                      var profile = ParseObject('Profile')..update()
 
-                      final user = ParseUser.createUser(username, senha, email);
+                      ;
 
-                      var response = await user.signUp();
+
+                      //final user = ParseUser.createUser(username, senha, email);
+
+                      //var response = await user.signUp();
 
                       await profile.save();
-                      ;
+                      ;*/
 
                       Navigator.push(context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => HomePageScreen(),
                         ),
                       );
                     }

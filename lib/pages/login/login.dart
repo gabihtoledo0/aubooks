@@ -228,6 +228,8 @@ class _LoginScreen extends State<LoginScreen> {
                         // textColor: Colors.white,
                         // color: Color(0xFF9966DD),
                         onPressed: () async {
+
+
                           final email = controllerEmail.text.trim();
                           final senha = controllerSenha.text.trim();
 
@@ -235,9 +237,9 @@ class _LoginScreen extends State<LoginScreen> {
 
                           var response = await user.login();
                           if (response.success) {
-                            showSuccess("Logou");
                             setState(() {
                               isLoggedIn = true;
+
 
                               Navigator.push(
                                 context,

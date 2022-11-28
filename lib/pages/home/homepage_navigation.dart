@@ -1,3 +1,4 @@
+//--no-sound-null-safety;
 import 'package:flutter/material.dart';
 import 'package:aubooks/pages/home/homepage_screen.dart';
 import 'package:aubooks/pages/home/my_list.dart';
@@ -8,7 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../login/login.dart';
 import '../register/AlterUser.dart';
-
+bool isLoggedIn = true;
 class HomePageNavigation extends StatefulWidget {
   const HomePageNavigation({Key? key}) : super(key: key);
 
@@ -80,10 +81,17 @@ class _HomePageNavigation extends State<HomePageNavigation> {
                   color: Color(0xFF9966DD)),
             ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
+              setState(() {
+                isLoggedIn = false;
+
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginScreen(),
+                  ),
+                );
+              });
             },
             style: OutlinedButton.styleFrom(
               side:
@@ -140,7 +148,8 @@ showExcluirContaDialog(BuildContext context) {
   // configura o button
   Widget loginButton = TextButton(
     child: Text("Sim"),
-    onPressed: () {
+    onPressed: () async {
+      
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => LoginScreen()),

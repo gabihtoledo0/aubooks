@@ -260,7 +260,7 @@ class _RegisterUser extends State<RegisterUser> {
 
                        ), onPressed: ()
                         async {
-                         // Add Profile objects and create table
+
                          final username = controllerUsername.text.trim();
                          final email = controllerEmail.text.trim();
                          final senha = controllerSenha.text.trim();

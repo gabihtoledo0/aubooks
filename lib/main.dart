@@ -4,7 +4,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
-void main() async {
+  void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(AudioServiceWidget(child: AuBooksApp()));
   final keyApplicationId = 'A5pURiaMMrYjmNCrganQ73W46fODSxaHL4VbUu6j';
@@ -14,7 +14,7 @@ void main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, autoSendSessionId: true);
 
-}
+  }
 
 class AuBooksApp extends StatefulWidget {
   @override
