@@ -1,11 +1,20 @@
 import 'package:aubooks/pages/telaInicial/primary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_service/audio_service.dart';
+import 'package:flutter/material.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
-void main() {
+  void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(AudioServiceWidget(child: AuBooksApp()));
-}
+  final keyApplicationId = 'A5pURiaMMrYjmNCrganQ73W46fODSxaHL4VbUu6j';
+  final keyClientKey = 'SqFCyfCRTE0c8TqANJ2HNfboFYm2FtOQP5nBVl7g';
+  final keyParseServerUrl = 'https://parseapi.back4app.com';
+
+  await Parse().initialize(keyApplicationId, keyParseServerUrl,
+      clientKey: keyClientKey, autoSendSessionId: true);
+
+  }
 
 class AuBooksApp extends StatefulWidget {
   @override

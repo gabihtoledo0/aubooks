@@ -1,3 +1,4 @@
+import 'package:aubooks/pages/home/homepage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:aubooks/components/logo.dart';
 import 'package:aubooks/pages/login/login.dart';
@@ -6,14 +7,14 @@ import './validator.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 
-class RegisterUser extends StatefulWidget {
-  const RegisterUser({Key? key, required}) : super(key: key);
+class AlterUser extends StatefulWidget {
+  const AlterUser({Key? key, required}) : super(key: key);
 
-  @override
-  _RegisterUser createState() => _RegisterUser();
+@override
+_AlterUser createState() => _AlterUser();
 }
 
-class _RegisterUser extends State<RegisterUser> {
+class _AlterUser extends State<AlterUser> {
   final _formKey = GlobalKey<FormState>();
   final controllerUsername = TextEditingController();
   final controllerSurname = TextEditingController();
@@ -32,7 +33,7 @@ class _RegisterUser extends State<RegisterUser> {
       mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
 
 
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,9 +59,11 @@ class _RegisterUser extends State<RegisterUser> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 10),
+
                   TextFormField(
                     controller: controllerUsername,
-                    validator: valida.validarNome,
+                    validator:
+                    valida.validarNome,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -68,13 +71,14 @@ class _RegisterUser extends State<RegisterUser> {
                         fontWeight: FontWeight.w300,
                         color: Color(0xFF39403E),
                       ),
-                      labelText: "Nome",
-                      border: OutlineInputBorder(),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: Color(0xFF9966DD),
-                      )),
-                      prefixIcon: Icon(Icons.person, color: Color(0xFF9966DD)),
+                            color: Color(0xFF9966DD),
+                          )),
+                      labelText: "Nome",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.supervisor_account,
+                          color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.name,
                     // validator: valida.validarNome,
@@ -85,7 +89,7 @@ class _RegisterUser extends State<RegisterUser> {
                   TextFormField(
                     controller: controllerSurname,
                     validator:
-                      valida.validarNome,
+                    valida.validarNome,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -95,8 +99,8 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: Color(0xFF9966DD),
-                      )),
+                            color: Color(0xFF9966DD),
+                          )),
                       labelText: "Sobrenome",
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.supervisor_account,
@@ -111,7 +115,7 @@ class _RegisterUser extends State<RegisterUser> {
                   TextFormField(
                     controller: controllerPhone,
                     validator:
-                      valida.validarCelular,
+                    valida.validarCelular,
                     inputFormatters: [maskFormatter],
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
@@ -122,12 +126,12 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: Color(0xFF9966DD),
-                      )),
+                            color: Color(0xFF9966DD),
+                          )),
                       labelText: "Celular",
                       border: OutlineInputBorder(),
                       prefixIcon:
-                          Icon(Icons.local_phone, color: Color(0xFF9966DD)),
+                      Icon(Icons.local_phone, color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.phone,
                     // validator: valida.validarCelular,
@@ -152,12 +156,12 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: Color(0xFF9966DD),
-                      )),
+                            color: Color(0xFF9966DD),
+                          )),
                       labelText: "Data de Nascimento",
                       border: OutlineInputBorder(),
                       prefixIcon:
-                          Icon(Icons.date_range, color: Color(0xFF9966DD)),
+                      Icon(Icons.date_range, color: Color(0xFF9966DD)),
                     ),
                     keyboardType: TextInputType.datetime,
                     // validator: valida.validarNome,
@@ -168,7 +172,7 @@ class _RegisterUser extends State<RegisterUser> {
                   TextFormField(
                     controller: controllerEmail,
                     validator:
-                      valida.validarEmail,
+                    valida.validarEmail,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -178,8 +182,8 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: Color(0xFF9966DD),
-                      )),
+                            color: Color(0xFF9966DD),
+                          )),
                       labelText: "Email",
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.email, color: Color(0xFF9966DD)),
@@ -193,7 +197,7 @@ class _RegisterUser extends State<RegisterUser> {
                   TextFormField(
                     controller: controllerSenha,
                     validator:
-                      valida.validarSenha,
+                    valida.validarSenha,
                     decoration: const InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 18,
@@ -203,8 +207,8 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: Color(0xFF9966DD),
-                      )),
+                            color: Color(0xFF9966DD),
+                          )),
                       labelText: "Senha",
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.vpn_key, color: Color(0xFF9966DD)),
@@ -227,8 +231,8 @@ class _RegisterUser extends State<RegisterUser> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: Color(0xFF9966DD),
-                      )),
+                            color: Color(0xFF9966DD),
+                          )),
                       labelText: "Confirme sua senha",
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.vpn_key, color: Color(0xFF9966DD)),
@@ -246,51 +250,49 @@ class _RegisterUser extends State<RegisterUser> {
                   const SizedBox(
                     height: 28.0,
                   ),
-                   SizedBox(
-                     height: 50.0,
-                     width: MediaQuery.of(context).size.width,
-                     child: ElevatedButton(
-                       /*shape: RoundedRectangleBorder(
+                  SizedBox(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    child: ElevatedButton(
+                      /*shape: RoundedRectangleBorder(
                            borderRadius: BorderRadius.circular(8.0),
                            side: BorderSide(color: Color(0xFFF8BBD0))),*/
-                       child: const Text(
-                         "Assinar gratuitamente",
-                         style: TextStyle(
-                             fontSize: 18.0, fontWeight: FontWeight.bold),
+                        child: const Text(
+                          "Alterar Dados",
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
 
-                       ), onPressed: ()
-                        async {
+                        ), onPressed: ()
+                    async {/*
+                      // Add Profile objects and create table
+                      final username = controllerUsername.text.trim();
+                      final email = controllerEmail.text.trim();
+                      final senha = controllerSenha.text.trim();
+                      final csenha = controllerCsenha.text.trim();
+                      final surname = controllerSurname.text.trim();
+                      final phone = controllerPhone.text.trim();
+                      final nasc = controllerNasc.text.trim();
 
-                         final username = controllerUsername.text.trim();
-                         final email = controllerEmail.text.trim();
-                         final senha = controllerSenha.text.trim();
-                         final csenha = controllerCsenha.text.trim();
-                         final surname = controllerSurname.text.trim();
-                         final phone = controllerPhone.text.trim();
-                         final nasc = controllerNasc.text.trim();
+                      var profile = ParseObject('Profile')..update()
 
-                         var profile = ParseObject('Profile');
-                         profile.set('Nome', username);
-                         profile.set('email', email);
-                         profile.set('Sobrenome', surname);
-                         profile.set('Nascimento', nasc);
-                         profile.set('Telefone', phone);
+                      ;
 
-                         final user = ParseUser.createUser(username, senha, email);
 
-                         var response = await user.signUp();
+                      //final user = ParseUser.createUser(username, senha, email);
 
-                         await profile.save();
-                         ;
+                      //var response = await user.signUp();
 
-                         Navigator.push(context,
-                           MaterialPageRoute(
-                             builder: (context) => LoginScreen(),
-                           ),
-                         );
-                       }
-  ),
-                   ),
+                      await profile.save();
+                      ;*/
+
+                      Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePageScreen(),
+                        ),
+                      );
+                    }
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -300,26 +302,26 @@ class _RegisterUser extends State<RegisterUser> {
     );
   }
 
-  // void register() async {
-  //   final String name = _nameController.text;
-  //   final String surname = _surnameController.text;
-  //   final String email = _emailController.text;
-  //   final String senha = _senhaController.text;
-  //   final String phone = _phoneController.text;
-  //   final String date = _dateOfBirthController.text;
+// void register() async {
+//   final String name = _nameController.text;
+//   final String surname = _surnameController.text;
+//   final String email = _emailController.text;
+//   final String senha = _senhaController.text;
+//   final String phone = _phoneController.text;
+//   final String date = _dateOfBirthController.text;
 
-  //   showSucessDialog(context);
+//   showSucessDialog(context);
 
-  //   // int inter = await interDao.insert(c);
-  //   //
-  //   // if (inter != null) {
-  //   //   print("realizado cadastro");
-  //   //   showSucessDialog(context);
-  //   // } else {
-  //   //   showAlertDialog(context);
-  //   //   print("usuário já cadastrado");
-  //   // }
-  // }
+//   // int inter = await interDao.insert(c);
+//   //
+//   // if (inter != null) {
+//   //   print("realizado cadastro");
+//   //   showSucessDialog(context);
+//   // } else {
+//   //   showAlertDialog(context);
+//   //   print("usuário já cadastrado");
+//   // }
+// }
 }
 
 showAlertDialog(BuildContext context) {

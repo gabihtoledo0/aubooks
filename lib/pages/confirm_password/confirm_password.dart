@@ -73,34 +73,34 @@ class _ConfirmPassword extends State<ConfirmPassword> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                SizedBox(
-                  height: 50.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        side: const BorderSide(color: Color(0xFF9966DD))),
-                    child: const Text(
-                      "Confirmar",
-                      style: TextStyle(fontSize: 18.0,
-                        fontFamily: 'Sansation',
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    textColor: Colors.white,
-                    color: Color(0xFF9966DD),
-                      // if (_formKey.currentState.validate()) {
-                      //   _auth();
-                      // }
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(
-                          builder: (context) => ChangePassword()
-                          ),
-                      );
-                    },
-                  ),
-                ),
+                // SizedBox(
+                //   height: 50.0,
+                //   width: MediaQuery.of(context).size.width,
+                //   child: RaisedButton(
+                //     shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(8.0),
+                //         side: const BorderSide(color: Color(0xFF9966DD))),
+                //     child: const Text(
+                //       "Confirmar",
+                //       style: TextStyle(fontSize: 18.0,
+                //         fontFamily: 'Sansation',
+                //         fontWeight: FontWeight.w700,
+                //       ),
+                //     ),
+                //     textColor: Colors.white,
+                //     color: Color(0xFF9966DD),
+                //       // if (_formKey.currentState.validate()) {
+                //       //   _auth();
+                //       // }
+                //     onPressed: () {
+                //       Navigator.push(context,
+                //           MaterialPageRoute(
+                //           builder: (context) => ChangePassword()
+                //           ),
+                //       );
+                //     },
+                //   ),
+                // ),
               ],
             ),
           ),
